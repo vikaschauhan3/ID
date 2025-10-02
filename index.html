@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vikas Chauhan — Instructional Design Portfolio</title>
+  <meta name="description" content="Instructional Designer & Learning Experience Designer — portfolio, case studies, video showcase, work samples, and resume." />
+  <meta property="og:title" content="Vikas Chauhan — Instructional Design Portfolio" />
+  <meta property="og:description" content="Instructional Designer & Learning Experience Designer — portfolio, case studies, video showcase, work samples, and resume." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vikaschauhan3.github.io/ID/" />
+  <meta property="og:image" content="https://dummyimage.com/1200x630/121212/ffffff&text=Vikas+Chauhan+Portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon (replace with your own if you like) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🎓</text></svg>">
+
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --panel: #111418;
+      --muted: #aeb4bf;
+      --text: #e6e9ef;
+      --brand: #4f8cff;
+      --brand-2: #7a5cff;
+      --accent: #22c55e;
+      --card: #141820;
+      --border: #1f2430;
+      --shadow: 0 10px 30px rgba(0,0,0,.3);
+      --radius: 18px;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f6f8fb; --panel: #ffffff; --muted:#5b6576; --text:#0f1728; --card:#ffffff; --border:#e6eaf2; --shadow:0 10px 25px rgba(15,23,40,.08);
+      }
+    }
+    * { box-sizing: border-box; }
+    html, body { height:100%; }
+    body { margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji"; background: var(--bg); color: var(--text); line-height:1.6; }
+
+    .container { width: min(1100px, 92vw); margin: 0 auto; }
+    header { position: sticky; top: 0; backdrop-filter: saturate(180%) blur(6px); background: color-mix(in srgb, var(--bg) 80%, transparent); border-bottom: 1px solid var(--border); z-index:10; }
+    nav { display:flex; align-items:center; justify-content:space-between; padding: 16px 0; }
+    nav a { color: var(--text); text-decoration:none; margin-left: 18px; opacity:.85; }
+    nav a:hover { opacity:1; }
+    .btn { display:inline-flex; align-items:center; gap:10px; padding: 10px 14px; border:1px solid var(--border); border-radius: 12px; background: linear-gradient(180deg, color-mix(in srgb, var(--panel) 88%, transparent), var(--panel)); box-shadow: var(--shadow); color: var(--text); text-decoration:none; }
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero { padding: 56px 0 28px; display:grid; grid-template-columns: 1.3fr 1fr; gap: 28px; align-items:center; }
+    .hero h1 { font-size: clamp(28px, 3.8vw, 48px); line-height:1.15; margin:0 0 8px; letter-spacing:.3px; }
+    .hero p.lead { font-size: clamp(16px, 1.5vw, 19px); color: var(--muted); margin: 0 0 16px; }
+    .badge { display:inline-block; font-size: 12px; border:1px solid var(--border); padding: 6px 10px; border-radius: 999px; margin: 6px 6px 0 0; color: var(--muted); }
+    .hero-card { background: radial-gradient(1200px 600px at 10% -10%, color-mix(in srgb, var(--brand) 14%, transparent), transparent), var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px; box-shadow: var(--shadow); }
+
+    section { padding: 36px 0; }
+    h2 { font-size: 24px; margin: 0 0 16px; letter-spacing:.2px; }
+    .subtle { color: var(--muted); font-size: 14px; margin-top: -6px; margin-bottom: 16px; }
+
+    .grid { display:grid; gap: 16px; }
+    .grid.cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid.cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 880px) { .hero { grid-template-columns: 1fr; } .grid.cols-3, .grid.cols-2 { grid-template-columns: 1fr; } }
+
+    .card { background: var(--card); border:1px solid var(--border); border-radius: var(--radius); overflow: clip; box-shadow: var(--shadow); display:flex; flex-direction:column; }
+    .card img { width:100%; height: 180px; object-fit: cover; background: #0a0a0a; }
+    .card .body { padding: 14px; display:flex; flex-direction:column; gap:8px; }
+    .card h3 { margin: 0; font-size: 18px; }
+    .meta { display:flex; gap:10px; flex-wrap:wrap; }
+    .meta span { font-size:12px; color: var(--muted); border:1px solid var(--border); padding:4px 8px; border-radius:999px; }
+    .card .actions { display:flex; gap:10px; margin-top:auto; }
+
+    .timeline { border-left: 2px dashed var(--border); margin-left: 8px; padding-left: 16px; }
+    .timeline .item { margin: 14px 0; }
+    .timeline .item strong { display:block; }
+
+    footer { border-top: 1px solid var(--border); padding: 28px 0 60px; color: var(--muted); }
+
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0; }
+
+    .float { animation: float 6s ease-in-out infinite; }
+    @keyframes float { 0% { transform: translateY(0px) } 50% { transform: translateY(-6px) } 100% { transform: translateY(0px) } }
+  </style>
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Vikas Chauhan",
+    "jobTitle": "Instructional Designer",
+    "url": "https://vikaschauhan3.github.io/ID/",
+    "email": "mailto:vikas.chauhan3@gmail.com",
+    "telephone": "+971552540284",
+    "sameAs": [
+      "https://www.linkedin.com/",
+      "https://github.com/vikaschauhan3"
+    ],
+    "knowsAbout": ["Instructional Design", "Learning Experience Design", "Canvas LMS", "eLearning", "Storyboarding", "SCORM", "xAPI", "Articulate Rise", "Articulate Storyline", "Vyond", "Accessibility (WCAG)", "Qualtrics", "Mentimeter", "H5P", "Camtasia", "HTML/CSS"]
+  }
+  </script>
+</head>
+<body>
+  <a class="sr-only" href="#content">Skip to content</a>
+  <header>
+    <div class="container">
+      <nav>
+        <strong>Vikas Chauhan</strong>
+        <div>
+          <a href="#work">Work</a>
+          <a href="#video">Video</a>
+          <a href="#case-studies">Case Studies</a>
+          <a href="#resume">Resume</a>
+          <a href="#samples">Samples</a>
+          <a class="btn" href="mailto:vikas.chauhan3@gmail.com">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="content" class="container">
+    <!-- HERO -->
+    <section class="hero">
+      <div>
+        <h1>Instructional Designer & Learning Experience Designer</h1>
+        <p class="lead">I design clear, engaging learning experiences across video-led and online programs. Canvas LMS admin handling full builds (scripts → shoots/animation → course design → launch → reporting).</p>
+        <div>
+          <span class="badge">Canvas LMS</span>
+          <span class="badge">Vyond (animation)</span>
+          <span class="badge">Articulate Rise</span>
+          <span class="badge">Storyline</span>
+          <span class="badge">H5P</span>
+          <span class="badge">HTML/CSS UI</span>
+          <span class="badge">Accessibility (WCAG)</span>
+          <span class="badge">SCORM/xAPI</span>
+          <span class="badge">Analytics</span>
+          <span class="badge">Qualtrics</span>
+          <span class="badge">Mentimeter</span>
+        </div>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn" href="#case-studies">View case studies</a>
+          <a class="btn" href="assets/Vikas_Chauhan_Resume.pdf" download>Download resume (PDF)</a>
+          <a class="btn" href="https://github.com/vikaschauhan3" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="tel:+971552540284">+971 55 254 0284</a>
+        </div>
+      </div>
+      <div class="hero-card float">
+        <h2 style="margin-top:0">Featured project</h2>
+        <p class="subtle">Video-first learning with measurable outcomes.</p>
+        <div class="card">
+          <img alt="Screenshot of video-led program UI" src="https://images.unsplash.com/photo-1529070538774-1843cb3265df?q=80&w=1400&auto=format&fit=crop" />
+          <div class="body">
+            <h3>Executive Program (video-led) — Scripts → Shoots → Canvas build</h3>
+            <p>Partnered with leading speakers. Wrote scripts, storyboarded, coordinated videography, produced animated explainers (Vyond + AI voice), and built the end-to-end Canvas journey with interactions.</p>
+            <div class="meta">
+              <span>Vyond</span><span>AI voiceover</span><span>Canvas</span><span>HTML/CSS</span>
+            </div>
+            <div class="actions">
+              <a class="btn" href="#case-studies">Read case study</a>
+              <a class="btn" href="#video">Video samples</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK GRID -->
+    <section id="work">
+      <h2>Selected work</h2>
+      <p class="subtle">Short, scannable highlights. Link each card to a repo, live demo, or artifact.</p>
+      <div class="grid cols-3">
+        <!-- Card 1 -->
+        <article class="card">
+          <img alt="Animated explainer" src="https://images.unsplash.com/photo-1529335764857-3f1164d1cb24?q=80&w=1400&auto=format&fit=crop" />
+          <div class="body">
+            <h3>Video learning journeys & stakeholder reels</h3>
+            <p>Scripted and storyboarded animated explainers and program promos; increased adoption and stakeholder buy-in.</p>
+            <div class="meta"><span>Vyond</span><span>AI narration</span><span>Camtasia</span></div>
+            <div class="actions">
+              <a class="btn" href="#video">Watch samples</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="card">
+          <img alt="Canvas course UI" src="https://images.unsplash.com/photo-1606326608690-4c4ef45a33f2?q=80&w=1400&auto=format&fit=crop" />
+        <div class="body">
+            <h3>Canvas programs (admin + build)</h3>
+            <p>Designed journeys, built interactions (quizzes, assignments, discussions), custom UI (HTML/CSS), reporting and support for 3k+ learners.</p>
+            <div class="meta"><span>Canvas</span><span>HTML/CSS</span><span>Analytics</span></div>
+            <div class="actions">
+              <a class="btn" href="#case-studies">Read case studies</a>
+            </div>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="card">
+          <img alt="Articulate course" src="https://images.unsplash.com/photo-1551281044-8d8b8419f7b6?q=80&w=1400&auto=format&fit=crop" />
+          <div class="body">
+            <h3>Articulate Rise/Storyline deployments</h3>
+            <p>Developed SCORM/xAPI modules and integrated with Canvas and TalentLMS; improved completion and assessment scores.</p>
+            <div class="meta"><span>Rise</span><span>Storyline</span><span>SCORM/xAPI</span></div>
+            <div class="actions">
+              <a class="btn" href="#samples">View samples</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- VIDEO SHOWCASE -->
+    <section id="video">
+      <h2>Video showcase</h2>
+      <p class="subtle">Animated explainers, AI-narrated segments, and speaker-led program promos.</p>
+      <div class="grid cols-3">
+        <article class="card">
+          <img alt="Animated storyboard" src="https://images.unsplash.com/photo-1484417894907-623942c8ee29?q=80&w=1400&auto=format&fit=crop" />
+          <div class="body">
+            <h3>Animated explainer</h3>
+            <p>Storyboard → Vyond animation → AI voiceover. Designed to clarify a complex process in ~90 seconds.</p>
+            <div class="meta"><span>Vyond</span><span>AI voice</span><span>Storyboard</span></div>
+            <div class="actions"><a class="btn" href="samples/vyond_explainer.mp4" target="_blank">Sample</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <img alt="Stakeholder reel" src="https://images.unsplash.com/photo-1518779578993-ec3579fee39f?q=80&w=1400&auto=format&fit=crop" />
+          <div class="body">
+            <h3>Stakeholder highlight reel</h3>
+            <p>Short promo to socialize a learning journey and drive enrollments.</p>
+            <div class="meta"><span>Editing</span><span>Motion</span><span>Brand</span></div>
+            <div class="actions"><a class="btn" href="samples/stakeholder_reel.mp4" target="_blank">Sample</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <img alt="Speaker-led program" src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1400&auto=format&fit=crop" />
+          <div class="body">
+            <h3>Speaker-led program segment</h3>
+            <p>Scripted sessions; guided the shoot; provided multimedia storyboard for graphics and overlays.</p>
+            <div class="meta"><span>Script</span><span>Shoot plan</span><span>Graphics brief</span></div>
+            <div class="actions"><a class="btn" href="samples/speaker_segment.mp4" target="_blank">Sample</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CASE STUDIES -->
+    <section id="case-studies">
+      <h2>Case studies</h2>
+      <p class="subtle">Demonstrate your thinking. Outcome-focused, with just enough process.</p>
+      <div class="grid cols-2">
+        <article class="card">
+          <div class="body">
+            <h3>Reducing support escalations via scenario-based learning</h3>
+            <p><strong>Problem:</strong> High L1→L2 escalations. <strong>Outcome:</strong> 28% reduction in two months.</p>
+            <ul>
+              <li><strong>Role:</strong> ID lead (needs analysis, scripts, build, QA)</li>
+              <li><strong>Approach:</strong> Job-task analysis → branching scenarios → feedback with worked examples</li>
+              <li><strong>Evidence:</strong> LMS analytics, call tags, before/after quiz deltas</li>
+            </ul>
+            <div class="actions"><a class="btn" href="case-studies/scenario-learning.html">Read more</a></div>
+          </div>
+        </article>
+        <article class="card">
+          <div class="body">
+            <h3>New-hire onboarding revamp</h3>
+            <p><strong>Problem:</strong> Time-to-productivity was 21 days. <strong>Outcome:</strong> 14 days post-revamp (−33%).</p>
+            <ul>
+              <li><strong>Role:</strong> Project owner</li>
+              <li><strong>Approach:</strong> Needs analysis, learning pathways, spaced retrieval, job aids</li>
+              <li><strong>Evidence:</strong> Manager surveys, LMS completion, task performance</li>
+            </ul>
+            <div class="actions"><a class="btn" href="case-studies/onboarding-revamp.html">Read more</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SAMPLES -->
+    <section id="samples">
+      <h2>Work samples</h2>
+      <p class="subtle">A mix of artifacts recruiters can skim in 60–90 seconds.</p>
+      <ul>
+        <li><a href="samples/vyond_explainer.mp4" target="_blank">Vyond explainer (~90s)</a></li>
+        <li><a href="samples/storyboard_sample.pdf" target="_blank">Storyboard sample (PDF)</a></li>
+        <li><a href="samples/video_script_template.docx" target="_blank">Video script template (DOCX)</a></li>
+        <li><a href="samples/assessment_bank.xlsx" target="_blank">Assessment item bank (XLSX)</a></li>
+        <li><a href="samples/job_aid_template.docx" target="_blank">Job aid template (DOCX)</a></li>
+        <li><a href="samples/canvas_theme_snippets.zip" target="_blank">Canvas theme snippets (CSS/JS)</a></li>
+        <li><a href="samples/qualtrics_survey_example.pdf" target="_blank">Qualtrics survey example (PDF)</a></li>
+      </ul>
+    </section>
+
+    <!-- RESUME -->
+    <section id="resume">
+      <h2>Experience</h2>
+      <p class="subtle">Short bullets focused on outcomes.</p>
+      <div class="timeline">
+        <div class="item">
+          <strong>Instructional Designer — Knowledge Group Consulting (KGC)</strong>
+          <em>2021 — Present · Dubai, UAE</em>
+          <ul>
+            <li>Administer Canvas LMS for 3k+ learners; led theming, templates, and governance; reduced build time by ~30%.</li>
+            <li>Built video-led programs: scripts, storyboards, shoot coordination, animated/AI-narrated segments (Vyond), and full Canvas builds.</li>
+            <li>Introduced analytics reviews (Canvas, SCORM/xAPI) → 18% completion lift in one quarter; +12–15% average quiz score gains.</li>
+            <li>Created reusable storyboard/script/QA frameworks; ~40% fewer review cycles.</li>
+            <li>Deployed Rise/Storyline modules to Canvas & TalentLMS; comfortable across LMS platforms.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <strong>Instructional Design Manager / L&D Specialist — Mentor Global Consultants</strong>
+          <em>Dec 2014 — 2021 · Dubai, UAE</em>
+          <ul>
+            <li>Owned end-to-end design and delivery across ILT, eLearning, experiential, and blended programs.</li>
+            <li>Built content libraries and standards; improved consistency and throughput.</li>
+          </ul>
+        </div>
+        <div class="item">
+          <strong>Assistant Manager, HR — Time Machine Group</strong>
+          <em>Oct 2013 — Mar 2014 · Dubai, UAE</em>
+        </div>
+        <div class="item">
+          <strong>Deputy Manager, Content — Centum Learning Limited</strong>
+          <em>Mar 2012 — Apr 2013 · New Delhi, India</em>
+        </div>
+        <div class="item">
+          <strong>Instructional Design Consultant — NIS Sparta</strong>
+          <em>Jun 2011 — Mar 2012 · New Delhi, India</em>
+        </div>
+        <div class="item">
+          <strong>Content Developer — Liquid Paper Finserve Pvt. Ltd.</strong>
+          <em>Jan 2008 — Nov 2010 · New Delhi, India</em>
+        </div>
+        <div class="item">
+          <strong>Process Developer — Genpact (GE Capital International Services)</strong>
+          <em>Sep 2003 — Oct 2007 · New Delhi, India</em>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <a class="btn" href="assets/Vikas_Chauhan_Resume.pdf" download>Download full resume</a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="subtle">Open to Instructional Design / LXD roles. Dubai-based; open to remote.</p>
+      <div class="grid cols-2">
+        <div class="card"><div class="body">
+          <h3>Email</h3>
+          <a class="btn" href="mailto:vikas.chauhan3@gmail.com">vikas.chauhan3@gmail.com</a>
+        </div></div>
+        <div class="card"><div class="body">
+          <h3>Phone</h3>
+          <a class="btn" href="tel:+971552540284">+971 55 254 0284</a>
+        </div></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <small>© <span id="year"></span> Vikas Chauhan · Built for GitHub Pages · <a href="https://github.com/vikaschauhan3/ID" target="_blank" rel="noopener" style="color:inherit;opacity:.8;">Source</a></small>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Optional: add analytics later (e.g., Plausible/GA)
+  </script>
+</body>
+</html>
