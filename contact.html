@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Contact — Vikas Chauhan</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body data-page="contact">
+<header>
+<div class="container nav">
+<div class="brand"><a href="index.html" style="text-decoration:none;color:inherit"><strong>Vikas Chauhan</strong></a></div>
+<nav>
+<a href="index.html">Home</a>
+<a href="resume.html">Resume</a>
+<a href="portfolio.html">Portfolio</a>
+<a class="active" href="contact.html">Contact</a>
+</nav>
+</div>
+</header>
+<main class="container">
+<section class="hero">
+<div>
+<h1>Contact</h1>
+<p class="lead">Dubai‑based; open to remote. Email, social, and a lightweight form below.</p>
+<div class="mt-2" style="display:flex; gap:10px; flex-wrap:wrap">
+<a class="btn" href="mailto:vikas.chauhan3@gmail.com">vikas.chauhan3@gmail.com</a>
+<a class="btn" href="https://www.linkedin.com/in/vikas-chauhan/" target="_blank" rel="noopener">LinkedIn</a>
+<a class="btn" href="https://github.com/vikaschauhan3" target="_blank" rel="noopener">GitHub</a>
+</div>
+</div>
+<div class="panel art" aria-hidden="true"></div>
+</section>
+
+
+<section>
+<h2>Send a message</h2>
+<p class="lead">This form uses Formspree (static‑site friendly). Replace the <em>action</em> URL with your Formspree endpoint.</p>
+<form class="card body" action="https://formspree.io/f/your-endpoint" method="POST">
+<label class="kicker" for="name">Your name</label>
+<input id="name" name="name" required style="padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)" />
+
+
+<label class="kicker mt-2" for="email">Email</label>
+<input id="email" name="email" type="email" required style="padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)" />
+
+
+<label class="kicker mt-2" for="message">Message</label>
+<textarea id="message" name="message" rows="6" required style="padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink)"></textarea>
+
+
+<div class="mt-2" style="display:flex;gap:10px;align-items:center">
+<button class="btn" type="submit">Send</button>
+<small class="muted">Or email directly: <a href="mailto:vikas.chauhan3@gmail.com">vikas.chauhan3@gmail.com</a></small>
+</div>
+</form>
+</section>
+</main>
+<footer><div class="container"><small>© <span id="year"></span> Vikas Chauhan</small></div></footer>
+<script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
