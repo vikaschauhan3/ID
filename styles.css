@@ -202,11 +202,10 @@ footer { margin-top: auto; }
 .mini-label{font-weight:700}
 .mini-sub{color:#6b7280}
 
-/* ===== Ensure page scrolls even when short ===== */
-main{min-height:120vh}
 
 /* Footer */
 footer{border-top:1px solid var(--rule); padding:20px 0 40px; color:#6b7280}
 .foot{display:flex; align-items:center; justify-content:space-between; gap:12px}
 .foot .social a{margin-left:14px; color:#6b7280}
 .foot .social a:hover{color:#111}
+
