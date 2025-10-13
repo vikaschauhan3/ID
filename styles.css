@@ -29,12 +29,6 @@
   --section-pad: clamp(50px, 6vw, 60px); /* space INSIDE sections (top/bottom) */
 }
 
-/* Keep a stable vertical scrollbar space so layout doesn't shift between pages */
-html { scrollbar-gutter: stable both-edges; }
-/* Fallback for older browsers: always reserve vertical scrollbar */
-body { overflow-y: scroll; }
-
-
 /* Give each section breathing room inside */
 main > section{
   padding-block: var(--section-pad);
@@ -579,6 +573,7 @@ footer{border-top:1px solid var(--rule); padding:20px 0 40px; color:#6b7280}
 .foot{display:flex; align-items:center; justify-content:space-between; gap:12px}
 .foot .social a{margin-left:14px; color:#6b7280}
 .foot .social a:hover{color:#111}
+
 
 
 
