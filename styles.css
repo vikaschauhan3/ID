@@ -25,22 +25,17 @@
   --radius:14px;
 
   /* one knob to control vertical rhythm across the page */
-  --section-gap: clamp(40px, 6vw, 84px);   /* space BETWEEN sections */
   --section-pad: clamp(50px, 6vw, 60px); /* space INSIDE sections (top/bottom) */
 }
+
 
 /* Give each section breathing room inside */
 main > section{
   padding-block: var(--section-pad);
 }
 
-/* Equal gap between any two consecutive sections */
-main > section + section{
-  margin-block-start: var(--section-gap);
-}
-
 /* Optional: consistent space before footer */
-footer{ margin-block-start: var(--section-gap); }
+footer{ margin-block-start: var(--section-pad); }
 
 
 /* Base */
@@ -75,13 +70,21 @@ footer { margin-top: auto; }
 }
 
 .section-sub{
-  text-align:center;
-  margin: 0 0 18px;
+
   color: var(--muted, #6b7280);
   font-weight:500;
   font-size:clamp(15px,1.5vw,18px)
   
 }
+
+.center{
+  text-align:center;
+}
+
+
+/* ========================================================================== */
+/* TOP NAVIGATION BAR                                                         */
+/* ========================================================================== */
 
 
 /* ===== Header ===== */
@@ -577,4 +580,169 @@ footer{border-top:1px solid var(--rule); padding:20px 0 40px; color:#6b7280}
 
 
 
+/* ========================================================================== */
+/* ABOUT — Ink & Paper Hero                                                   */
+/* ========================================================================== */
 
+.hide{ position:absolute; width:0; height:0; overflow:hidden; }
+
+.about-hero{
+  /* keep clear of your fixed header (64px); tweak if yours is different */
+  padding-top: calc(64px + clamp(60px, 12vh, 120px));
+  padding-bottom: clamp(48px, 8vh, 84px);
+  position: relative;
+  isolation: isolate;
+}
+
+/* soft “paper” backdrop that peeks in behind the photo */
+.about-hero::before{
+  content:"";
+  position:absolute; inset:0 0 0 0;
+  background:
+    radial-gradient(60% 40% at 78% 20%, rgba(79,140,255,.10), transparent 60%),
+    linear-gradient(#fff, #fff);
+  z-index:-1;
+}
+
+.about-grid{
+  display:grid;
+  grid-template-columns: 1fr 1.05fr;      /* photo | text */
+  gap: clamp(24px, 5vw, 72px);
+  align-items:center;
+}
+
+@media (max-width: 980px){
+  .about-grid{ grid-template-columns: 1fr; text-align:center; }
+}
+
+.about-eyebrow{
+  display:inline-block;
+  color: var(--brand, #4f8cff);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.about-title{
+  margin: 0 0 10px;
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: clamp(32px, 4.2vw, 60px);
+  line-height: 1.05;
+}
+
+.about-lead{
+  margin: 0 0 18px;
+  color: #475569;
+  font-weight: 500;
+  font-size: clamp(16px, 1.6vw, 18px);
+
+}
+
+.about-ctas{ display:flex; gap:10px; flex-wrap:wrap; }
+@media (max-width: 980px){ .about-ctas{ justify-content:center; } }
+
+/* Photo “polaroid” card with live sketch */
+.about-media{ margin:0; }
+.photo-wrap{
+  width:min(500px, 92vw);
+  aspect-ratio: 4 / 4;
+  border: 1px solid var(--border, #e6eaf2);
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  transform: rotate(-0.8deg);
+  position: relative;
+}
+.photo-wrap::after{
+  /* faint paper sheen */
+  content:"";
+  position:absolute; inset:0 0 auto 0;
+  height: 28%;
+  background: linear-gradient(180deg, rgba(255,255,255,.65), transparent);
+  pointer-events:none;
+}
+
+.photo-sketch{
+  width:100%; height:100%; object-fit: cover; display:block;
+  /* The magic: apply the SVG sketch filter */
+  filter: url(#pencil-sketch);
+}
+
+.photo-cap{
+  margin-top: 10px;
+  color: var(--muted, #6b7280);
+  font-weight: 700;
+  font-size: 13px;
+  text-align: center;
+}
+
+
+/* ========================================================================== */
+/* EXPERIENCE — Vertical timeline (years only) with single-line summaries      */
+/* ========================================================================== */
+
+.experience{
+  padding-top: clamp(40px, 6vh, 72px);
+  padding-bottom: clamp(40px, 6vh, 72px);
+}
+
+.xp-head{
+  display:flex; align-items:center; justify-content:space-between; gap:16px;
+  margin-bottom: 18px;
+}
+.xp-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+.xp-actions .pill i{ font-size:14px; }
+
+/* Timeline spine */
+.xp-timeline{
+  position:relative;
+  margin:0; padding-left:0; list-style:none;
+}
+.xp-timeline::before{
+  content:"";
+  position:absolute; left:10px; top:0; bottom:0;
+  width:2px; background: var(--border, #e6eaf2);
+}
+
+/* Items */
+.xp-item{
+  position:relative;
+  padding-left:36px;        /* space for dot + spine */
+  margin: 0 0 18px 0;
+}
+.xp-dot{
+  position:absolute; left:4px; top:10px;
+  width:14px; height:14px; border-radius:999px;
+  border:2px solid var(--border, #e6eaf2);
+  background: var(--panel, #fff);
+  box-shadow: 0 2px 6px rgba(0,0,0,.06);
+}
+.xp-card{
+  border:1px solid var(--border, #e6eaf2);
+  background: var(--panel, #fff);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+
+.xp-meta{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  font-weight:700;
+}
+.xp-role{ letter-spacing:.2px; }
+.xp-time{ color: var(--muted, #6b7280); font-weight:700; white-space:nowrap; }
+.xp-org{ margin-top:4px; color: var(--muted, #6b7280); font-weight:600; }
+
+.xp-sum{
+  margin:8px 0 0 0;
+  color: var(--ink, #111);
+  line-height:1.5;
+  font-size: 14.5px;
+}
+
+/* Compact on small screens */
+@media (max-width: 640px){
+  .xp-meta{ flex-direction:column; align-items:flex-start; }
+  .xp-time{ margin-top:2px; }
+}
