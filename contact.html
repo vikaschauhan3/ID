@@ -1,123 +1,56 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Contact — Vikas Chauhan</title>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="contact-page">
-  <!-- Header -->
-  <header class="site-header">
-    <div class="container navbar">
-      <div class="brand">Vikas Chauhan</div>
+---
+layout: default
+title: Contact — Vikas Chauhan
+---
 
-      <nav class="tabs" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="portfolio.html">Portfolio</a>
-      </nav>
-
-      <div class="actions">
-        <a class="icon" href="tel:+971552540284" title="Call Vikas" aria-label="Call Vikas">
-          <span class="roller">
-            <i class="fa-solid fa-phone first"></i>
-            <i class="fa-solid fa-phone second"></i>
-          </span>
-        </a>
-        <a class="icon" href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio" title="Email Vikas" aria-label="Email Vikas">
-          <span class="roller">
-            <i class="fa-solid fa-envelope first"></i>
-            <i class="fa-solid fa-envelope second"></i>
-          </span>
-        </a>
-        <a class="pill" href="contact.html">Contact me</a>
-      </div>
-
-      <button id="hamburger" class="hamburger" aria-label="Open menu"><span class="hb"></span></button>
-    </div>
-  </header>
-
-  <!-- Mobile Menu -->
-  <div id="menu" class="menu-overlay" aria-hidden="true">
-    <div class="menu-top">
-      <div class="name">Vikas Chauhan</div>
-      <button id="closeMenu" class="hamburger open" aria-label="Close menu"><span class="hb"></span></button>
-    </div>
-    <div class="menu-inner">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="portfolio.html">Portfolio</a>
-      <a href="tel:+971552540284">Call</a>
-      <a href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio">Email</a>
-      <a href="contact.html" style="margin-top:10px; text-decoration:underline">Contact me</a>
-    </div>
-  </div>
-
-  <!-- Content -->
-  <main class="container contact-wrap">
+<section class="container contact-wrap">
     <h1 style="text-align:center; margin:8px 0 10px">Let’s talk</h1>
     <p style="text-align:center; color:#6b7280; margin:0 0 22px">
-      Please feel free to reach me directly by phone or email, or use the contact form below to send a message.
+        Please feel free to reach me directly by phone or email, or use the contact form below to send a message.
     </p>
 
     <div class="card">
-      <form action="https://formspree.io/f/your-endpoint" method="POST">
-        <div class="row">
-          <input name="name" placeholder="Your name" required />
-          <input name="email" type="email" placeholder="Email" required />
-          <input name="company" placeholder="Company (optional)" />
-          <input name="role" placeholder="Role (optional)" />
-          <textarea name="message" placeholder="How can I help?" required></textarea>
-        </div>
-        <div class="actions-row">
-          <a class="pill pill-static" href="index.html">Back Home</a>
-          <button class="pill btn-primary" type="submit">Send Message</button>
-        </div>
-      </form>
+        <form action="https://formspree.io/f/your-endpoint" method="POST">
+            <div class="row">
+                <input name="name" placeholder="Your name" required />
+                <input name="email" type="email" placeholder="Email" required />
+                <input name="company" placeholder="Company (optional)" />
+                <input name="role" placeholder="Role (optional)" />
+                <textarea name="message" placeholder="How can I help?" required></textarea>
+            </div>
+            <div class="actions-row">
+                <a class="pill pill-static" href="index.html">Back Home</a>
+                <button class="pill btn-primary" type="submit">Send Message</button>
+            </div>
+        </form>
     </div>
 
     <!-- Mini contact blocks (outside the card; equal spacing; centered) -->
     <div class="mini-wrap">
-      <div class="mini-contacts">
-        <div class="mini-item">
-          <a class="mini-icon" href="tel:+971552540284" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
-          <div>
-            <div class="mini-label">Phone</div>
-            <div class="mini-sub">+971 55 254 0284</div>
-          </div>
+        <div class="mini-contacts">
+            <div class="mini-item">
+                <a class="mini-icon" href="tel:+971552540284" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
+                <div>
+                    <div class="mini-label">Phone</div>
+                    <div class="mini-sub">+971 55 254 0284</div>
+                </div>
+            </div>
+            <div class="mini-item">
+                <a class="mini-icon" href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio"
+                    aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+                <div>
+                    <div class="mini-label">Email</div>
+                    <div class="mini-sub">vikas.chauhan3@gmail.com</div>
+                </div>
+            </div>
+            <div class="mini-item">
+                <a class="mini-icon" href="https://www.linkedin.com/in/vikas-chauhan/" target="_blank" rel="noopener"
+                    aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <div>
+                    <div class="mini-label">LinkedIn</div>
+                    <div class="mini-sub">Let’s Connect</div>
+                </div>
+            </div>
         </div>
-        <div class="mini-item">
-          <a class="mini-icon" href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-          <div>
-            <div class="mini-label">Email</div>
-            <div class="mini-sub">vikas.chauhan3@gmail.com</div>
-          </div>
-        </div>
-        <div class="mini-item">
-          <a class="mini-icon" href="https://www.linkedin.com/in/vikas-chauhan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-          <div>
-            <div class="mini-label">LinkedIn</div>
-            <div class="mini-sub">Let’s Connect</div>
-          </div>
-        </div>
-      </div>
     </div>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container foot">
-      <div>© 2025 Vikas Chauhan | Abu Dhabi, UAE</div>
-      <div class="social">
-        <a href="https://www.linkedin.com/in/vikas-chauhan/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-        <a href="tel:+971552540284" aria-label="Phone"><i class="fa-solid fa-phone"></i></a>
-        <a href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
-      </div>
-    </div>
-  </footer>
-
-  <script src="app.js"></script>
-</body>
-</html>
+</section>
