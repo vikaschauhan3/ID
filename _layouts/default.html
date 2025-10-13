@@ -2,19 +2,22 @@
 ---
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title }}</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
-  <script src="{{ '/app.js' | relative_url }}" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}">
+    <script src="{{ '/app.js' | relative_url }}" defer></script>
 </head>
+
 <body>
-  {% include nav.html %}
-  <main>{{ content }}</main>
-  {% include footer.html %}
+    {% include nav.html %}
+    <main>{{ content }}</main>
+    {% include footer.html %}
 </body>
+
 </html>
