@@ -26,8 +26,13 @@
 
   /* one knob to control vertical rhythm across the page */
   --section-gap: clamp(40px, 6vw, 84px);   /* space BETWEEN sections */
-  --section-pad: clamp(50px, 6vw, 80px); /* space INSIDE sections (top/bottom) */
+  --section-pad: clamp(50px, 6vw, 60px); /* space INSIDE sections (top/bottom) */
 }
+
+/* Keep a stable vertical scrollbar space so layout doesn't shift between pages */
+html { scrollbar-gutter: stable both-edges; }
+/* Fallback for older browsers: always reserve vertical scrollbar */
+body { overflow-y: scroll; }
 
 
 /* Give each section breathing room inside */
@@ -67,6 +72,24 @@ main { flex: 1 0 auto; }
 /* Footer naturally sits at the end; this is optional clarity */
 footer { margin-top: auto; }
 
+.section-title{
+  text-align:center;
+  font-weight:800;
+  letter-spacing:.2px;
+  font-size:clamp(24px,3.2vw,40px);
+  margin:0 0 12px;
+}
+
+.section-sub{
+  text-align:center;
+  margin: 0 0 18px;
+  color: var(--muted, #6b7280);
+  font-weight:500;
+  font-size:clamp(15px,1.5vw,18px)
+  
+}
+
+
 /* ===== Header ===== */
 .site-header{
   position: fixed;
@@ -75,11 +98,14 @@ footer { margin-top: auto; }
   background:transparent;
   transition:background .2s ease,color .2s ease;
 }
-.navbar{
+.navbar,
+.menu-bar{
   display:grid; grid-template-columns:auto 1fr auto auto; /* brand | tabs | actions | hamburger */
-  align-items:center; gap:14px; padding:14px 0;
+  align-items:center; min-height: 64px;                      /* lock the height */
+  padding: 0;                            /* padding comes from .container, not the bar */
 }
-.brand{font-weight:800; letter-spacing:.2px; font-size:28px; color:var(--name)}
+.brand,
+.menu-top .name{font-weight:800; letter-spacing:.2px; font-size:28px; line-height: 1; color:var(--name)}
 
 .tabs{display:flex; justify-content:center; gap:28px}
 .tabs a{color:var(--tabs); font-weight:600; transition:color .15s ease}
@@ -153,6 +179,7 @@ footer { margin-top: auto; }
   .tabs, .actions{display:none}
   .hamburger{display:block; justify-self:end}
   .navbar{grid-template-columns:auto 1fr auto}
+  .menu-bar{ grid-template-columns: auto 1fr auto; }  /* <-- add this */
 }
 
 
@@ -166,7 +193,7 @@ footer { margin-top: auto; }
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 
-.menu-top{position:absolute; top:0px; left:0; right:0; padding:14px 4.8vw 14px 3.1vw; display:flex; align-items:center; justify-content:space-between;}
+.menu-top{position:absolute; top:0px; left:0; right:0; align-items:center; justify-content:space-between;}
 .menu-top .name{font-weight:800; letter-spacing:.2px; font-size:28px; color:var(--name)}
 .menu-inner{height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:18px}
 .menu-inner a{font-size:32px; font-weight:800; transform:translateY(8px); opacity:.85; transition:transform .18s ease, opacity .18s ease, color .15s ease}
@@ -222,74 +249,8 @@ footer { margin-top: auto; }
 }
 
 
-/* === Typical Deliverables === */
-#deliverables { padding-top: 8px; }
-.deliverables-title{
-  text-align:center;
-  font-weight:800;
-  letter-spacing:.2px;
-  font-size:clamp(22px,3vw,34px);
-  margin:0 0 12px;
-}
-
-.deliverables-grid{
-  display:grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap:16px;
-  list-style:none;
-  padding:0;
-  margin:0;
-}
-
-.deliverable{
-  display:grid;
-  grid-template-columns: 52px 1fr;
-  gap:12px;
-  align-items:flex-start;
-  border:1px solid var(--border, #e6eaf2);
-  border-radius:18px;
-  background: var(--panel, #fff);
-  box-shadow: 0 6px 18px rgba(0,0,0,.06);
-  padding:14px;
-  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-}
-.deliverable:hover{ transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,.10); }
-
-.d-icon{
-  inline-size:52px; block-size:52px;
-  display:grid; place-items:center;
-  border-radius:14px;
-  color: var(--ink, #111);
-  background:
-    radial-gradient(120px 80px at 10% 0%, color-mix(in srgb, var(--brand,#4f8cff) 12%, transparent), transparent),
-    var(--panel,#fff);
-  border:1px solid var(--border, #e6eaf2);
-  box-shadow: 0 6px 16px rgba(0,0,0,.06);
-}
-.d-icon svg{ width:26px; height:26px; }
-
-.d-copy h3{
-  margin:2px 0 0;
-  font-size: clamp(15px, 1.5vw, 18px);
-  line-height:1.35;
-  letter-spacing:.2px;
-}
-
-/* Stack to single column on small screens */
-@media (max-width: 880px){
-  .deliverables-grid{ grid-template-columns: 1fr; }
-}
-
-
 /* ===== Offers carousel ===== */
 .offers { --gap:16px; --cards-per-view:3; }
-.offers-title{
-  text-align:center;
-  font-weight:800;
-  letter-spacing:.2px;
-  font-size:clamp(24px,3.2vw,40px);
-  margin:0 0 12px;
-}
 
 /* Viewport shows 3 full cards on large, 1 on small; no partial cards */
 .offers-viewport{
@@ -362,24 +323,6 @@ footer { margin-top: auto; }
 
 
 /* === Deliverables (icon tiles) === */
-#deliverables-icons{ padding-top: 8px;}
-
-.deliv-title{
-  text-align:center;
-  font-weight:800;
-  letter-spacing:.2px;
-  font-size: clamp(24px, 3.4vw, 38px);
-  margin: 0 0 6px;
-}
-
-.deliv-sub{
-  text-align:center;
-  margin: 0 0 18px;
-  color: var(--muted, #6b7280);
-  font-weight:500;
-  font-size:clamp(15px,1.5vw,18px)
-  
-}
 
 /* responsive, staggered grid */
 .deliv-grid{
@@ -450,19 +393,100 @@ footer { margin-top: auto; }
 }
 
 
-/* === Trusted by (logos always scrolling) === */
+/* === Awards (large badges, no boxes; four aligned caption lines) === */
 
-/* Title consistent with your other section headings */
-.trusted-title{
-  text-align:center;
-  font-weight:800;
-  letter-spacing:.2px;
-  font-size: clamp(22px, 3vw, 34px);
-  margin: 0 0 50px;
+/* Grid of tiles: 4-up → 2-up → 1-up */
+.awards-strip{
+  --gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: var(--gap);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: start;
+  justify-items: center;
 }
+@media (max-width: 1000px){ .awards-strip{ grid-template-columns: repeat(2, minmax(0,1fr)); } }
+@media (max-width: 600px){ .awards-strip{ grid-template-columns: 1fr; } }
+
+.awards-strip li{
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+}
+
+.awards-strip figure{ margin: 0; }
+.awards-strip img{
+  height: clamp(110px, 10vw, 160px);
+  width: auto;
+  display: block;
+  object-fit: contain;
+  border: 0;
+  filter: none !important;
+  filter: drop-shadow(0 6px 16px rgba(0,0,0,.12));
+}
+
+/* Optional: tighten bottom spacing like other sections */
+#awards .awards-note{ margin: 10px 0 30px 0;   font-size: 14px;}
+
+
+/* Caption: enforce 4 rows that align across items */
+.award-caption{
+  margin-top: 12px;
+  display: grid;
+  grid-template-rows: auto auto auto auto; /* 4 fixed rows */
+  row-gap: 6px;
+  justify-items: center;
+}
+
+/* Line 1: Award program name (same size as your deliverables subtitle scale) */
+.award-caption .cap-1{
+  font-weight: 700;
+  font-size: 12px;
+  color: var(--muted, #6b7280);
+  line-height: 1.35;
+  letter-spacing: .2px;
+  min-height: 1.35em;  /* alignment buffer */
+}
+
+/* Line 2: Level + year (same size as line 1) */
+.award-caption .cap-2{
+  font-weight: 800;
+  font-size: 12px;
+  color: var(--muted, #6b7280);
+  line-height: 1.35;
+  letter-spacing: .2px;
+  min-height: 1.35em;
+
+}
+
+/* Line 3: What the award was for (can wrap; keep size consistent) */
+.award-caption .cap-3{
+  font-weight: 600;
+  font-size: clamp(14px, 1.6vw, 16px);
+  line-height: 1.35;
+  letter-spacing: .2px;
+}
+
+/* Line 4: Client & contribution (smaller, muted, centered) */
+.award-caption .cap-4{
+  margin-top: 8px;              /* extra space before the last line */
+  font-size: 13px;
+  color: var(--muted, #6b7280);
+  line-height: 1.35;
+  text-align: center;
+}
+
+
+
+
+/* === Representative Client Logos === */
 
 /* Marquee container with soft edge fade */
 .logo-marquee{
+  margin-top: 40px;
   position: relative;
   overflow: hidden;
   --gap: clamp(36px, 6vw, 72px);
@@ -504,7 +528,6 @@ footer { margin-top: auto; }
 @media (prefers-reduced-motion: reduce){
   .logo-track{ animation: none !important; }
 }
-
 
 
 /* ===== Contact page bits ===== */
