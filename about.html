@@ -5,6 +5,29 @@ title: About — Vikas Chauhan
 
 <!-- Hero / Intro -->
 
+        <svg aria-hidden="true" width="0" height="0" class="hide">
+            <filter id="pencil-sketch" color-interpolation-filters="sRGB">
+                <!-- Desaturate to grayscale -->
+                <feColorMatrix type="saturate" values="0" result="gray" />
+                <!-- Edge detect (Sobel-like) -->
+                <feConvolveMatrix kernelMatrix="
+         -1 -1 -1
+         -1  8 -1
+         -1 -1 -1" divisor="1" bias="0" edgeMode="duplicate" in="gray" result="edges" />
+                <!-- Boost contrast of edges -->
+                <feComponentTransfer in="edges" result="ink">
+                    <feFuncR type="gamma" exponent="0.6" />
+                    <feFuncG type="gamma" exponent="0.6" />
+                    <feFuncB type="gamma" exponent="0.6" />
+                </feComponentTransfer>
+                <!-- Light paper tint behind lines -->
+                <feFlood flood-color="#fafbff" flood-opacity="1" result="paper" />
+                <feComposite in="paper" in2="ink" operator="over" result="sketch" />
+                <!-- Output -->
+                <feBlend in="sketch" in2="SourceGraphic" mode="multiply" />
+            </filter>
+        </svg>
+
 <section class="hero container about-grid" aria-label="About Vikas Chauhan">
     <!-- Photo (live sketch) -->
     <figure class="about-media" aria-label="Portrait of Vikas Chauhan">
@@ -160,4 +183,5 @@ title: About — Vikas Chauhan
         <a class="pill btn-primary" href="contact.html"><i class="fa-solid fa-paper-plane"></i> Start a conversation</a>
     </div>
 </section>
+
 
