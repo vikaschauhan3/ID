@@ -362,6 +362,12 @@ footer {
     align-items: center;
     gap: 18px;
 }
+.menu-inner a.active {
+    opacity: 1;
+    color: #000;
+    text-decoration: underline;
+    transform: translateY(0);
+}
 .menu-inner a {
     font-size: 32px;
     font-weight: 800;
@@ -398,6 +404,10 @@ footer {
 .scrolled .menu-overlay {
     background: rgba(11, 15, 20, 0.96);
     color: rgba(255, 255, 255, 0.9);
+}
+.scrolled .menu-inner a.active {
+    color: #fff;
+    text-decoration: underline;
 }
 .scrolled .menu-top .name {
     color: #fff;
