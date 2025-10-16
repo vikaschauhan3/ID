@@ -252,3 +252,182 @@ window.addEventListener('keydown', (e) => {
 		passive: true
 	});
 })();
+
+
+// ===== Portfolio Detail Navigation (Prev / Close / Next + keyboard) =====
+(function () {
+  const root = document.getElementById('detail-root');
+  if (!root) return; // not a detail page
+
+  const manifest = (window.PortfolioManifest || []);
+  const slug = root.dataset.slug;
+  const titleEl = document.getElementById('detailTitle');
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnClose = document.getElementById('btnClose');
+
+  // Find current index (by slug first; fallback to matching pathname)
+  let index = manifest.findIndex(x => x.slug === slug);
+  if (index < 0) {
+    const path = location.pathname.toLowerCase();
+    index = manifest.findIndex(x => path.endsWith((x.href || "").toLowerCase()));
+  }
+
+  function setBtn(el, target) {
+    if (!el) return;
+    if (!target) {
+      el.setAttribute('aria-disabled', 'true');
+      el.removeAttribute('href');
+    } else {
+      el.removeAttribute('aria-disabled');
+      el.href = target.href;
+      if (target.title) el.title = target.title;
+    }
+  }
+
+  if (index >= 0) {
+    const cur = manifest[index];
+    const prev = manifest[index - 1];
+    const next = manifest[index + 1];
+    if (cur?.title && titleEl) titleEl.textContent = cur.title;
+    setBtn(btnPrev, prev);
+    setBtn(btnNext, next);
+  } else {
+    setBtn(btnPrev, null);
+    setBtn(btnNext, null);
+  }
+
+  // Close: try window.close(); fallback to portfolio.html
+  btnClose?.addEventListener('click', function (e) {
+    e.preventDefault();
+    window.close();
+    if (!document.hidden) {
+      if (history.length > 1) history.back();
+      else window.location.href = this.getAttribute('href') || 'portfolio.html';
+    }
+  });
+
+  // Keyboard: ← / → / Esc
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' && btnPrev && !btnPrev.hasAttribute('aria-disabled')) {
+      window.location.href = btnPrev.href;
+    }
+    if (e.key === 'ArrowRight' && btnNext && !btnNext.hasAttribute('aria-disabled')) {
+      window.location.href = btnNext.href;
+    }
+    if (e.key === 'Escape' && btnClose) btnClose.click();
+  });
+})();
+
+// === Detail banner chevrons (Prev/Next) ===
+(function(){
+  const body = document.body;
+  if (!body.classList.contains('detail-page')) return;
+
+  const manifest = (window.PortfolioManifest || []);
+  const slug = body.getAttribute('data-slug');
+  const prevEl = document.getElementById('heroPrev');
+  const nextEl = document.getElementById('heroNext');
+
+  // Find current index by slug, fallback by pathname
+  let idx = manifest.findIndex(x => x.slug === slug);
+  if (idx < 0) {
+    const path = location.pathname.toLowerCase();
+    idx = manifest.findIndex(x => path.endsWith((x.href || '').toLowerCase()));
+  }
+
+  function setBtn(el, target){
+    if (!el) return;
+    if (!target){
+      el.setAttribute('aria-disabled','true');
+      el.removeAttribute('href');
+    } else {
+      el.removeAttribute('aria-disabled');
+      el.href = target.href;
+      el.title = target.title || '';
+    }
+  }
+
+  if (idx >= 0){
+    setBtn(prevEl, manifest[idx - 1]);
+    setBtn(nextEl, manifest[idx + 1]);
+  } else {
+    setBtn(prevEl, null);
+    setBtn(nextEl, null);
+  }
+
+  // Keyboard arrows still work (optional)
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft' && prevEl && !prevEl.hasAttribute('aria-disabled')) location.href = prevEl.href;
+    if (e.key === 'ArrowRight' && nextEl && !nextEl.hasAttribute('aria-disabled')) location.href = nextEl.href;
+  });
+})();
+
+
+// === Portfolio filter (tabs) ===
+(function () {
+  const grid = document.getElementById('portfolioGrid');
+  if (!grid) return;
+  const cards = Array.from(grid.querySelectorAll('.pcard'));
+  const tabs = Array.from(document.querySelectorAll('.portfolio-tabs .ptab'));
+
+  function apply(filter) {
+    const f = filter.toLowerCase();
+    cards.forEach(card => {
+      const cats = (card.getAttribute('data-cat') || '').toLowerCase().split(/\s+/);
+      const show = (f === 'all') || cats.includes(f);
+      card.classList.toggle('hide', !show);
+    });
+  }
+  tabs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabs.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      apply(btn.dataset.filter || 'all');
+    });
+  });
+  apply('all');
+})();
+
+
+// === Responsive Filters (small screens) ===
+(function(){
+  const wrap  = document.querySelector('.filters[data-behavior="responsive-filters"]');
+  if (!wrap) return;
+
+  const btn   = wrap.querySelector('#filterToggle');
+  const panel = wrap.querySelector('#filtersList');
+  if (!btn || !panel) return;
+
+  const icon = btn.querySelector('i');
+
+  function toggle(open) {
+    const isOpen = (open ?? !wrap.classList.contains('is-open'));
+    wrap.classList.toggle('is-open', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+    if (icon){
+      icon.classList.toggle('fa-plus',  !isOpen);
+      icon.classList.toggle('fa-minus',  isOpen);
+    }
+  }
+
+  btn.addEventListener('click', () => toggle());
+
+  // Auto-close after picking a filter on phones
+  panel.addEventListener('click', (e) => {
+    if (e.target?.classList.contains('ptab') &&
+        window.matchMedia('(max-width: 780px)').matches) {
+      toggle(false);
+    }
+  });
+
+  // Reset when resizing to desktop
+  const mq = window.matchMedia('(min-width: 781px)');
+  mq.addEventListener('change', (ev) => {
+    if (ev.matches) {
+      wrap.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      if (icon){ icon.classList.add('fa-plus'); icon.classList.remove('fa-minus'); }
+    }
+  });
+})();
