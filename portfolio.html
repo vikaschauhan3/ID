@@ -3,13 +3,13 @@ layout: default
 title: Portfolio — Vikas Chauhan
 ---
 
-  <section class="portfolio-hero pad-tight container">
+<section class="portfolio-hero pad-tight container">
     <h1 class="section-title">Portfolio</h1>
     <p class="section-sub">Selected recent projects and samples that reflect my work.</p>
-
+  
     <!-- Filters -->
     <div class="filters" data-behavior="responsive-filters">
-      <button id="filterToggle"
+        <button id="filterToggle"
               class="filter-toggle pill pill-static"
               type="button"
               aria-expanded="false"
@@ -17,50 +17,42 @@ title: Portfolio — Vikas Chauhan
         <i class="fa-solid fa-plus" aria-hidden="true"></i>
         <span>Filter</span>
       </button>
-
-      <div id="filtersList" class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
-        <button class="ptab active" data-filter="all" role="tab" aria-selected="true">all</button>
-        <button class="ptab" data-filter="elearning" role="tab" aria-selected="false">elearning</button>
-        <button class="ptab" data-filter="articulate-rise" role="tab" aria-selected="false">articulate-rise</button>
-        <button class="ptab" data-filter="microlearning" role="tab" aria-selected="false">microlearning</button>
-      </div>
+        <div id="filtersList" class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
+            <button class="ptab active" data-filter="all" role="tab" aria-selected="true">all</button>
+            <button class="ptab" data-filter="elearning" role="tab" aria-selected="false">elearning</button>
+            <button class="ptab" data-filter="articulate-rise" role="tab" aria-selected="false">articulate-rise</button>
+            <button class="ptab" data-filter="microlearning" role="tab" aria-selected="false">microlearning</button>
+        </div>
     </div>
-  </section>
+</section>
 
-  <!-- Grid -->
-  <section class="container">
+<!-- Grid -->
+<section class="container pad-tight">
     <div id="portfolioGrid" class="portfolio-grid">
 
-      <a class="pcard"
-         href="{{ '/client_centered_communication.html' | relative_url }}"
-         data-cat="articulate-rise elearning microlearning">
-        <figure class="pcard-fig">
-          <img loading="lazy"
-               src="{{ '/assets/portfolio/client_centered_communication.jpg' | relative_url }}"
-               alt="Client centered communication screenshot">
-          <figcaption class="pcard-cap">
-            <span class="pcard-title">Client Centered Communication</span>
-            <span class="pcard-tags">rise • elearning • microlearning</span>
-          </figcaption>
-        </figure>
-      </a>
+        <!-- Card -->
+        <a class="pcard" href="{{ '/client_centered_communication.html' | relative_url }}" data-cat="articulate-rise elearning microlearning">
+            <figure class="pcard-fig">
+                <img loading="lazy" src="{{ '/assets/portfolio/client_centered_communication.jpg' | relative_url }}" alt="Client centered communication screenshot">
+                <figcaption class="pcard-cap">
+                    <span class="pcard-title">Client Centered Communication</span>
+                    <span class="pcard-tags">rise • elearning • microlearning</span>
+                </figcaption>
+            </figure>
+        </a>
 
-      <!-- Card -->
-      <a class="pcard"
-         href="{{ '/video_learning.html' | relative_url }}"
-         data-cat="blended canvas video elearning"><!-- add 'elearning' so filters can show it -->
-        <figure class="pcard-fig">
-          <img loading="lazy"
-               src="{{ '/assets/portfolio/video_learning.jpg' | relative_url }}"
-               alt="Video learning screenshot">
-          <figcaption class="pcard-cap">
-            <span class="pcard-title">Video Based Courses</span>
-            <span class="pcard-tags">blended • canvas • video</span>
-          </figcaption>
-        </figure>
-      </a>
+        <!-- Card -->
+        <a class="pcard" href="{{ '/video_learning.html' | relative_url }}" data-cat="blended canvas video">
+            <figure class="pcard-fig">
+                <img loading="lazy" src="{{ '/assets/portfolio/video_learning.jpg' | relative_url }}" alt="video learning screenshot">
+                <figcaption class="pcard-cap">
+                    <span class="pcard-title">Video Based Courses</span>
+                    <span class="pcard-tags">blended • canvas  • video</span>
+                </figcaption>
+            </figure>
+        </a>
 
-      <!-- Add more <a class="pcard">…</a> items as needed. Tag with data-cat. -->
+        <!-- Add more <a class="pcard">…</a> items as needed. Just tag data-cat. -->
 
     </div>
-  </section>
+</section>
