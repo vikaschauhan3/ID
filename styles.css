@@ -50,10 +50,6 @@ main > section {
     padding-block: var(--section-pad);
 }
 
-/* Optional: consistent space before footer */
-footer {
-    margin-block-start: var(--section-pad);
-}
 
 /* Base */
 * {
@@ -79,10 +75,6 @@ a {
     margin: 0 auto;
 }
 
-html,
-body {
-    height: 100%;
-}
 body {
     min-height: 100svh; /* full viewport height, mobile-safe */
     display: flex;
@@ -436,7 +428,7 @@ footer {
 
 /* ===== Hero ===== */
 .hero {
-    padding: 100px 0 48px;
+    padding: clamp(72px, 12vw, 100px) 0 48px;
     min-height: 60vh;
     display: grid;
     place-items: center;
@@ -1293,6 +1285,13 @@ footer {
   position: relative;
   transition: color .15s ease;
 }
+
+.ptab:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
+
+
 .ptab:hover { color: var(--tabs-hover); }
 .ptab.active { color: var(--tabs-hover); }
 .ptab.active::after {
