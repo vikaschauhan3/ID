@@ -28,7 +28,22 @@
         6vw,
         60px
     ); /* space INSIDE sections (top/bottom) */
+
+    --header-h: 64px;
 }
+
+
+.pad-none   { --section-pad: 0px; }
+.pad-tight  { --section-pad: clamp(20px, 3vw, 32px); }
+.pad-normal { --section-pad: clamp(50px, 6vw, 60px); } /* your default */
+.pad-loose  { --section-pad: clamp(70px, 8vw, 96px); }
+
+/* Ensure page content starts below the fixed header */
+body { padding-top: var(--header-h); }
+
+/* On detail pages, *don’t* zero this out—use the header height */
+body.detail-page { padding-top: var(--header-h); }
+
 
 /* Give each section breathing room inside */
 main > section {
@@ -121,7 +136,7 @@ footer {
     display: grid;
     grid-template-columns: auto 1fr auto auto; /* brand | tabs | actions | hamburger */
     align-items: center;
-    min-height: 64px; /* lock the height */
+    min-height: var(--header-h); /* lock the height */
     padding: 0; /* padding comes from .container, not the bar */
 }
 .brand,
@@ -421,7 +436,7 @@ footer {
 
 /* ===== Hero ===== */
 .hero {
-    padding: 150px 0 48px;
+    padding: 100px 0 48px;
     min-height: 60vh;
     display: grid;
     place-items: center;
@@ -1245,3 +1260,298 @@ footer {
         margin-top: 2px;
     }
 }
+
+
+
+
+/* ================== Portfolio ================== */
+
+
+.portfolio-hero {
+  text-align: center;
+  margin-top: 24px; /* leave room for fixed header */
+}
+
+.portfolio-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 22px;
+  justify-content: center;
+  margin: 20px 0 6px;
+}
+
+.ptab {
+  background: transparent;
+  border: none;
+  padding: 6px 0;
+  font: inherit;
+  font-weight: 800;
+  color: var(--tabs);
+  text-transform: lowercase;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+  position: relative;
+  transition: color .15s ease;
+}
+.ptab:hover { color: var(--tabs-hover); }
+.ptab.active { color: var(--tabs-hover); }
+.ptab.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -8px;
+  margin-inline: auto;
+  width: 44px; height: 3px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+/* Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* 4-up desktop, 3-up tablet, 1–2 up mobile */
+.pcard { grid-column: span 3; }
+@media (max-width: 1200px) { .pcard { grid-column: span 4; } }
+@media (max-width: 780px)  { .pcard { grid-column: span 6; } }
+@media (max-width: 520px)  { .pcard { grid-column: span 12; } }
+
+/* Card */
+.pcard {
+  display: block;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  background: #000;
+  position: relative;
+}
+.pcard-fig {
+  margin: 0;
+  display: grid;
+  place-items: stretch;
+  aspect-ratio: 16/9; /* consistent tiles */
+}
+.pcard img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  transition: transform .28s ease, opacity .28s ease;
+  opacity: .92;
+}
+.pcard-cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  color: #fff;
+  padding: 16px 18px 14px;
+  display: grid;
+  gap: 4px;
+  background: linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0));
+}
+.pcard-title {
+  font-weight: 800;
+  font-size: clamp(16px, 2.2vw, 22px);
+  line-height: 1.15;
+}
+.pcard-tags {
+  font-weight: 700;
+  font-size: 13px;
+  opacity: .9;
+}
+
+/* Hover */
+.pcard:hover img { transform: scale(1.06); opacity: 1; }
+.pcard:hover .pcard-cap { background: linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0)); }
+
+/* Filter hide */
+.pcard.hide { display: none; }
+
+/* Overlay that sits above the image but below the caption text */
+.pcard { position: relative; }
+
+/* Darken image for text contrast */
+.pcard::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;                 /* below .pcard-cap (which already sits above) */
+  pointer-events: none;
+
+  /* bottom-up gradient + light uniform veil */
+  background:
+    linear-gradient(to top,
+      rgba(0,0,0,.62) 0%,
+      rgba(0,0,0,.38) 40%,
+      rgba(0,0,0,0) 72%),
+    rgba(0,0,0,.10);
+  transition: opacity .25s ease;
+  opacity: 0.5;                 /* adjust to taste */
+}
+
+/* Ensure caption stays on top of the overlay */
+.pcard-cap { position: absolute; z-index: 2; }
+
+/* Optional: slightly stronger overlay on hover (subtle) */
+.pcard:hover::before { opacity: 1.05; }
+
+
+/* === Banner chevrons “>” / “<” (stroke only) === */
+:root{
+  --chev-size: 28px;        /* arm length  (was 18px) */
+  --chev-thick: 2px;      /* stroke width (was 3px) */
+  --chev-color: #fff;       /* arrow color */
+  --chev-hit: 60px;   /* .hero-nav width/height */
+  --chev-gap: 16px;   /* breathing room between chevron and text */
+}
+
+.hero-nav{
+  position:absolute; top:50%; transform:translateY(-50%);
+  display:block; width:60px; height:60px;          /* bigger click target */
+  text-decoration:none; border-radius:999px;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+/* Keep them farther from edges */
+.hero-nav--left  { left: clamp(20px, 3.2vw, 44px); }
+.hero-nav--right { right: clamp(20px, 3.2vw, 44px); }
+
+.hero-nav::before{
+  content:"";
+  position:absolute; inset:0; margin:auto;
+  width:var(--chev-size); height:var(--chev-size);
+  border-right:var(--chev-thick) solid var(--chev-color);
+  border-top:var(--chev-thick) solid var(--chev-color);
+  transform-origin:center;
+  opacity:.98;
+  transition: transform .18s ease, opacity .18s ease, box-shadow .18s ease;
+}
+
+/* Shapes */
+.hero-nav--right::before { transform: rotate(45deg); }    /* “>” */
+.hero-nav--left::before  { transform: rotate(225deg); }   /* “<” */
+
+/* Hover: subtle halo + scale up a touch */
+.hero-nav:hover,
+.hero-nav:focus-visible{
+  outline: none;
+  backdrop-filter: blur(2px) saturate(120%);
+}
+.hero-nav:hover::before,
+.hero-nav:focus-visible::before{
+  transform: scale(1.12) rotate(45deg);
+
+}
+.hero-nav--left:hover::before,
+.hero-nav--left:focus-visible::before{
+  transform: scale(1.12) rotate(225deg);
+}
+
+/* Click feedback */
+.hero-nav:active { transform: translateY(-50%) scale(.96); }
+.hero-nav[aria-disabled="true"]{ opacity:.45; pointer-events:none; }
+
+/* Small screens tweak */
+@media (max-width: 520px){
+  :root{ --chev-size: 24px; --chev-thick: 3px; }
+  .hero-nav{ width:52px; height:52px; }
+}
+
+
+
+/* ===== Responsive Filters (small screens only) ===== */
+
+/* Filter toggle uses site pill styles */
+.filter-toggle{
+  inline-size: 160px;          /* width */
+  justify-content: center;      /* center icon+text inside */
+  display:none;                 /* shown only on small screens */
+  align-items:center;
+  gap:10px;
+  font: inherit;
+  font-weight: 700; /* or bold */
+  cursor:pointer;
+}
+.filter-toggle i{ font-size:14px; line-height:0; }
+
+/* Phones/tablets: show toggle, collapse tabs by default */
+@media (max-width: 780px){
+  .filter-toggle{ display:inline-flex; }
+  .filters .portfolio-tabs{ display:none; margin-top:10px; }
+  .filters.is-open .portfolio-tabs{ display:flex; }
+
+  /* tidy wrap when opened */
+  .portfolio-tabs{
+    flex-wrap: wrap;
+    gap: 12px 18px;
+    justify-content: center;
+  }
+}
+
+/* Desktops: tabs visible, button hidden */
+@media (min-width: 781px){
+  .filters .portfolio-tabs{ display:flex; }
+}
+
+
+
+/* ===== Detail Work Page (banner style) ===== */
+
+/* remove the old top padding used for sticky bars on detail pages */
+body.detail-page { padding-top: var(--header-h); }
+
+/* Hero banner */
+.detail-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  min-height: clamp(80px, 28vh, 100px);
+  padding: clamp(32px, 5vw, 48px) 16px;
+  padding-inline: max(16px, calc(var(--chev-hit) + var(--chev-gap)));
+  color: var(--name-dark, #fff);
+  background:
+    radial-gradient(70% 60% at 80% 20%, rgba(79,140,255,.20), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--hdr-bg, #0b0f14) 90%, #1a2230 10%), var(--hdr-bg, #0b0f14));
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.detail-hero .detail-title {
+  margin: 0;
+  font-weight: 800;
+  letter-spacing: .2px;
+  font-size: clamp(28px, 4.4vw, 56px);
+  line-height: 1.05;
+}
+.detail-hero .detail-sub {
+  margin-top: 8px;
+  color: color-mix(in srgb, #ffffff 88%, rgba(255,255,255,.75));
+  font-weight: 600;
+}
+
+
+
+
+/* Content body */
+.detail-wrap { width: min(1100px, 92vw); margin: 24px auto; }
+.detail-body p { margin: 0 0 12px; }
+
+/* Media (if you show screenshots later) */
+.media { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); background:#000; margin: 16px 0; }
+.media img, .media video, .media iframe { width:100%; height:auto; display:block; border:0; }
+
+/* CTA row */
+.cta-row { display:flex; flex-wrap:wrap; gap:10px; margin: 12px 0 18px; }
+.btn {
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 12px 16px; border-radius: 12px; font-weight: 800; letter-spacing:.2px;
+  border: 1px solid #dfe3ea; text-decoration:none; transition: transform .15s ease, background .15s ease, color .15s ease, border-color .15s ease;
+}
+.btn-primary { background:#111; color:#fff; border-color:#111; }
+.btn-primary:hover { transform: translateY(-1px); }
+.btn-ghost { background: var(--pill, #e6e9ef); color: var(--tabs, #3b3b3b); }
+.btn-ghost:hover { background: var(--pill-hover, #d5dbe4); color:#000; transform: translateY(-1px); }
+
