@@ -1036,28 +1036,6 @@ footer {
     overflow: hidden;
 }
 
-.about-hero {
-    /* keep clear of your fixed header (64px); tweak if yours is different */
-    padding-top: calc(64px + clamp(60px, 12vh, 120px));
-    padding-bottom: clamp(48px, 8vh, 84px);
-    position: relative;
-    isolation: isolate;
-}
-
-/* soft “paper” backdrop that peeks in behind the photo */
-.about-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 0 0;
-    background: radial-gradient(
-            60% 40% at 78% 20%,
-            rgba(79, 140, 255, 0.1),
-            transparent 60%
-        ),
-        linear-gradient(#fff, #fff);
-    z-index: -1;
-}
-
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1.05fr; /* photo | text */
@@ -1553,4 +1531,5 @@ body.detail-page { padding-top: var(--header-h); }
 .btn-primary:hover { transform: translateY(-1px); }
 .btn-ghost { background: var(--pill, #e6e9ef); color: var(--tabs, #3b3b3b); }
 .btn-ghost:hover { background: var(--pill-hover, #d5dbe4); color:#000; transform: translateY(-1px); }
+
 
