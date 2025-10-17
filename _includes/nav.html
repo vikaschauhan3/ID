@@ -1,60 +1,67 @@
 {%- assign current = page.url | replace:'index.html','/' | replace: '//','/' -%}
+
 <header class="site-header">
-  <div class="container navbar">
-    <div class="brand">Vikas Chauhan</div>
+    <div class="container navbar">
 
-    <nav class="tabs" aria-label="Primary">
-      <a href="{{ '/index.html' | relative_url }}"
-         class="{% if current == '/' %}active{% endif %}">Home</a>
+        <div class="brand">Vikas Chauhan</div>
 
-      <a href="{{ '/about.html' | relative_url }}"
-         class="{% if current == '/about.html' %}active{% endif %}">About</a>
+        <nav class="tabs" aria-label="Primary">
+            <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}">Home</a>
 
-      <a href="{{ '/portfolio.html' | relative_url }}"
-         class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}">Portfolio</a>
-    </nav>
+            <a href="{{ '/about.html' | relative_url }}"
+                class="{% if current == '/about.html' %}active{% endif %}">About</a>
 
-    <div class="actions">
-      <a class="icon" href="tel:+971552540284" title="Call Vikas" aria-label="Call Vikas">
-        <span class="roller">
+            <a href="{{ '/portfolio.html' | relative_url }}"
+                class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}">Portfolio</a>
+        </nav>
+
+        <div class="actions">
+
+            <a class="icon" href="tel:+971552540284" title="Call Vikas" aria-label="Call Vikas">
+                <span class="roller">
           <i class="fa-solid fa-phone first"></i>
           <i class="fa-solid fa-phone second"></i>
         </span>
-      </a>
-      <a class="icon"
-         href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio"
-         title="Email Vikas" aria-label="Email Vikas">
-        <span class="roller">
+            </a>
+
+            <a class="icon" href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio"
+                title="Email Vikas" aria-label="Email Vikas">
+                <span class="roller">
           <i class="fa-solid fa-envelope first"></i>
           <i class="fa-solid fa-envelope second"></i>
         </span>
-      </a>
-      <a class="pill" href="{{ '/contact.html' | relative_url }}">Contact me</a>
-    </div>
+            </a>
 
-    <button id="hamburger" class="hamburger" aria-label="Open menu"><span class="hb"></span></button>
-  </div>
+            <a class="pill" href="{{ '/contact.html' | relative_url }}">Contact me</a>
+
+        </div>
+
+        <button id="hamburger" class="hamburger" aria-label="Open menu"><span class="hb"></span></button>
+
+    </div>
 </header>
 
 <!-- Mobile Menu -->
 <div id="menu" class="menu-overlay" aria-hidden="true">
-  <div class="menu-top">
-    <div class="container menu-bar">
-      <div class="name">Vikas Chauhan</div>
-      <button id="closeMenu" class="hamburger open" aria-label="Close menu"><span class="hb"></span></button>
+
+    <div class="menu-top">
+        <div class="container menu-bar">
+            <div class="name">Vikas Chauhan</div>
+            <button id="closeMenu" class="hamburger open" aria-label="Close menu"><span class="hb"></span></button>
+        </div>
     </div>
-  </div>
-  <div class="menu-inner">
-    <a href="{{ '/index.html' | relative_url }}"
-       class="{% if current == '/' %}active{% endif %}">Home</a>
 
-    <a href="{{ '/about.html' | relative_url }}"
-       class="{% if current == '/about.html' %}active{% endif %}">About</a>
+    <div class="menu-inner">
+        <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}">Home</a>
 
-    <a href="{{ '/portfolio.html' | relative_url }}"
-       class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}">Portfolio</a>
+        <a href="{{ '/about.html' | relative_url }}"
+            class="{% if current == '/about.html' %}active{% endif %}">About</a>
 
-    <a href="{{ '/contact.html' | relative_url }}"
-       class="{% if current == '/contact.html' %}active{% endif %}">Contact me</a>
-  </div>
+        <a href="{{ '/portfolio.html' | relative_url }}"
+            class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}">Portfolio</a>
+
+        <a href="{{ '/contact.html' | relative_url }}"
+            class="{% if current == '/contact.html' %}active{% endif %}">Contact me</a>
+    </div>
+    
 </div>
