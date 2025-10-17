@@ -15,7 +15,7 @@
     <script src="{{ '/app.js' | relative_url }}" defer></script>
 </head>
 
-<body>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}{% if page.slug %} data-slug="{{ page.slug }}"{% endif %}>
     {% include nav.html %}
     <main>{{ content }}</main>
     {% include footer.html %}
