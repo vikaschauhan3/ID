@@ -1,5 +1,5 @@
 /* ===== Global Theme: Vikas — Header + Mobile Menu + Hero + Contact tiles ===== */
-/* Typography */
+/* Typography */ 
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 :root {
@@ -1822,4 +1822,5 @@ body.detail-page {
 	background: var(--pill-hover, #d5dbe4);
 	color: #000;
 	transform: translateY(-1px);
+
 }
