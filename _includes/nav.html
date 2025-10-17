@@ -61,8 +61,7 @@
     </div>
 
     <div class="menu-inner" role="menu">
-        <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}" role="menuitem" class="active"
-            style="margin-top:10px; text-decoration:underline">Home</a>
+        <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}" role="menuitem">Home</a>
         <a href="{{ '/about.html' | relative_url }}" class="{% if current == '/about.html' %}active{% endif %}" role="menuitem">About</a>
         <a href="{{ '/portfolio.html' | relative_url }}" class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}" role="menuitem">Portfolio</a>
         <a href="{{ '/contact.html' | relative_url }}" role="menuitem">Contact me</a>
