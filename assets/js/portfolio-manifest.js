@@ -1,6 +1,19 @@
-// assets/js/portfolio-manifest.js
+---
+---
+
+/* Portfolio manifest: controls order + titles for prev/next */
 window.PortfolioManifest = [
-  { slug: "client_centered_communication", href: "client_centered_communication.html", title: "Client Centered Communication" },
-  { slug: "cmi_video_series", href: "cmi_video_series.html", title: "CMI Video Series" },
-  { slug: "video_learning", href: "video_learning.html", title: "Video Based Learning" },
+  {
+    title: "Client Centered Communication",
+    slug: "client_centered_communication",
+    href: "{{ '/client_centered_communication.html' | relative_url }}"
+  },
+  {
+    title: "CMI Video Series",
+    slug: "cmi_video_series",
+    href: "{{ '/cmi_video_series.html' | relative_url }}"
+  }
+
+  // Add more in the order you want them to appear:
+  // { title: "Project Name", slug: "project_slug", href: "{{ '/project_slug.html' | relative_url }}" },
 ];
