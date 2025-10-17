@@ -9,7 +9,7 @@ window.PortfolioManifest = [
     href: "{{ '/client_centered_communication.html' | relative_url }}"
   },
   {
-    title: "Video Based Courses",
+    title: "CMI Video Series",
     slug: "cmi_video_series",
     href: "{{ '/cmi_video_series.html' | relative_url }}"
   },
@@ -21,5 +21,6 @@ window.PortfolioManifest = [
   // Add more in the order you want them to appear:
   // { title: "Project Name", slug: "project_slug", href: "{{ '/project_slug.html' | relative_url }}" },
 ];
+
 
 
