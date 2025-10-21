@@ -7,28 +7,121 @@ setScrollState();
 window.addEventListener('scroll', setScrollState, {
 	passive: true
 });
-// Mobile menu
-const menu = document.getElementById('menu');
-const hb = document.getElementById('hamburger');
-const closeMenu = document.getElementById('closeMenu');
-if (hb && menu) {
-	hb.addEventListener('click', () => {
-		hb.classList.toggle('open');
-		menu.classList.add('open');
-	});
-}
-if (closeMenu && menu) {
-	closeMenu.addEventListener('click', () => {
-		hb?.classList.remove('open');
-		menu.classList.remove('open');
-	});
-}
-window.addEventListener('keydown', (e) => {
-	if (e.key === 'Escape') {
-		hb?.classList.remove('open');
-		menu?.classList.remove('open');
-	}
-});
+
+
+// ===== Mobile menu (robust, accessible, tap-safe) =====
+(function () {
+  const menu = document.getElementById('menu');           // overlay
+  const hb = document.getElementById('hamburger');        // open button
+  const closeBtn = document.getElementById('closeMenu');  // close button
+  if (!menu || !hb || !closeBtn) return;
+
+  // Helpful defaults (works with your current HTML)
+  menu.setAttribute('role', menu.getAttribute('role') || 'dialog');
+  menu.setAttribute('aria-modal', menu.getAttribute('aria-modal') || 'true');
+  if (!menu.hasAttribute('aria-hidden')) menu.setAttribute('aria-hidden', 'true');
+  hb.setAttribute('aria-controls', menu.id);
+  hb.setAttribute('aria-expanded', 'false');
+  closeBtn.setAttribute('aria-controls', menu.id);
+  closeBtn.setAttribute('aria-expanded', 'false');
+
+  const focusableSel = [
+    'a[href]',
+    'button:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])'
+  ].join(',');
+
+  const evt = window.PointerEvent ? 'pointerup' : 'click'; // improves mobile reliability
+  let lastFocused = null;
+
+  function setOpen(isOpen) {
+    // Toggle classes
+    menu.classList.toggle('open', isOpen);
+    hb.classList.toggle('open', isOpen);
+
+    // A11y state
+    menu.setAttribute('aria-hidden', String(!isOpen));
+    hb.setAttribute('aria-expanded', String(isOpen));
+    closeBtn.setAttribute('aria-expanded', String(isOpen));
+
+    // Prevent background scroll
+    document.body.classList.toggle('no-scroll', isOpen);
+
+    // Focus management
+    if (isOpen) {
+      lastFocused = document.activeElement;
+      const first = menu.querySelector(focusableSel);
+      first && first.focus({ preventScroll: true });
+    } else {
+      (lastFocused || hb).focus({ preventScroll: true });
+    }
+  }
+
+  function openMenu(e) {
+    // Ignore non-primary pointer buttons
+    if (e && 'button' in e && e.button !== 0) return;
+    setOpen(true);
+  }
+  function closeMenu(e) {
+    if (e && 'button' in e && e.button !== 0) return;
+    setOpen(false);
+  }
+
+  // Use pointer events + click fallback for maximum tap reliability
+  hb.addEventListener(evt, openMenu);
+  hb.addEventListener('click', openMenu);
+  closeBtn.addEventListener(evt, closeMenu);
+  closeBtn.addEventListener('click', closeMenu);
+
+  // Close when tapping outside inner panel
+  menu.addEventListener('click', (e) => {
+    const inner = menu.querySelector('.menu-inner');
+    if (!inner || inner.contains(e.target)) return;
+    setOpen(false);
+  });
+
+  // Close after navigating via a menu link (prevents stuck overlay)
+  menu.querySelectorAll('a[href]').forEach(a => {
+    a.addEventListener('click', () => setOpen(false));
+  });
+
+  // Keyboard: Escape to close, Tab trap while open
+  window.addEventListener('keydown', (e) => {
+    if (!menu.classList.contains('open')) return;
+
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      setOpen(false);
+      return;
+    }
+
+    if (e.key === 'Tab') {
+      const nodes = Array.from(menu.querySelectorAll(focusableSel));
+      if (!nodes.length) return;
+      const first = nodes[0];
+      const last = nodes[nodes.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault(); last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault(); first.focus();
+      }
+    }
+  });
+
+  // Safety: ensure the overlay cannot intercept taps when closed
+  const io = new MutationObserver(() => {
+    if (menu.classList.contains('open')) {
+      menu.style.display = 'block';
+    } else {
+      menu.style.display = 'none';
+    }
+  });
+  io.observe(menu, { attributes: true, attributeFilter: ['class'] });
+  // Initialize display state
+  menu.style.display = 'none';
+})();
+
+
 /* app.js — parallax + scroll-reveal */
 (function() {
 	// ---- Parallax on hero SVG groups ----
