@@ -287,13 +287,13 @@ footer {
 .hamburger {
     position: relative;
     display: none;
+    z-index: 2000;
     width: clamp(38px, 5.5svh, 44px);
     height: clamp(38px, 5.5svh, 44px);
     border-radius: 10px;
     background: transparent;
     border: 1px solid #dfe3ea;
     transition: border-color 0.18s ease, background 0.18s ease;
-    -webkit-tap-highlight-color: transparent;
 }
 
 .hb,
@@ -367,7 +367,7 @@ footer {
     position: fixed;
     inset: 0;
     display: none;
-    z-index: 2000;
+    z-index: 1500;
     background: rgba(255, 255, 255, 0.94);
     color: rgba(0, 0, 0, 0.72);
     backdrop-filter: saturate(140%) blur(6px);
@@ -1691,4 +1691,5 @@ display: flex;
     filter: none !important;
     filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
 }
+
 
