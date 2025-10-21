@@ -1,9 +1,9 @@
 {%- assign current = page.url | replace:'index.html','/' | replace: '//','/' -%}
 <!-- Header -->
 <header class="site-header" role="banner">
-    <div class="container navbar">
-        <!-- Brand -->
-        <a class="brand" href="{{ '/' | relative_url }}" aria-label="Vikas Chauhan — Home">
+  <div class="container navbar">
+    <!-- Brand -->
+    <a class="brand" href="{{ '/' | relative_url }}" aria-label="Vikas Chauhan — Home">
             Vikas Chauhan
         </a>
 
@@ -48,7 +48,7 @@
 <div id="menu" class="menu-overlay" aria-hidden="true" role="dialog" aria-label="Mobile menu">
     <div class="menu-top">
         <div class="container menu-bar">
-            <div class="name">Vikas Chauhan</div>
+            <div class="brand">Vikas Chauhan</div>
             <button id="closeMenu"
               class="hamburger open"
               type="button"
@@ -64,6 +64,6 @@
         <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}" role="menuitem">Home</a>
         <a href="{{ '/about.html' | relative_url }}" class="{% if current == '/about.html' %}active{% endif %}" role="menuitem">About</a>
         <a href="{{ '/portfolio.html' | relative_url }}" class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}" role="menuitem">Portfolio</a>
-        <a href="{{ '/contact.html' | relative_url }}" role="menuitem">Contact me</a>
+        <a href="{{ '/contact.html' | relative_url }}" class="{% if current == '/contact.html' %}active{% endif %}" role="menuitem">Contact me</a>
     </div>
 </div>
