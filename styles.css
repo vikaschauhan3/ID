@@ -1,5 +1,9 @@
-/* ===== Global Theme: Vikas — Header + Mobile Menu + Hero + Contact tiles ===== */
+/* ========================================================================== */
+/* GLOBAL THEME                                                               */
+/* ========================================================================== */
+
 /* Typography */
+
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 :root {
@@ -22,104 +26,96 @@
     --shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     --radius: 14px;
 
-    /* one knob to control vertical rhythm across the page */
-    --section-pad: clamp(
-        50px,
-        6vw,
-        60px
-    ); /* space INSIDE sections (top/bottom) */
-
     --header-h: clamp(56px, 6.5svh, 72px);
+    --section-pad: clamp(10px, 5vw, 50px); /* space INSIDE sections (top/bottom) */
 
-  --brand-size: clamp(20px, 2.4vw, 30px);
-  --tab-size: clamp(14px, 1.6vw, 16px);
-  --pill-pad-y: clamp(8px, 1.2vw, 10px);
-  --pill-pad-x: clamp(12px, 1.6vw, 14px);
-
+    /* Nav elements */
+    --brand-size: clamp(20px, 2.4vw, 30px);
+    --tab-size: clamp(14px, 1.6vw, 16px);
+    --pill-pad-y: clamp(8px, 1.2vw, 10px);
+    --pill-pad-x: clamp(12px, 1.6vw, 14px);
 }
 
 
-.pad-none   { --section-pad: 0px; }
-.pad-tight  { --section-pad: clamp(20px, 3vw, 32px); }
-.pad-normal { --section-pad: clamp(50px, 6vw, 60px); } /* your default */
-.pad-loose  { --section-pad: clamp(70px, 8vw, 96px); }
-
-/* Ensure page content starts below the fixed header */
-body { padding-top: var(--header-h); }
-
-/* On detail pages, *don’t* zero this out—use the header height */
-body.detail-page { padding-top: var(--header-h); }
-
-
-/* Give each section breathing room inside */
-main > section {
-    padding-block: var(--section-pad);
-}
-
+/* ========================================================================== */
+/* GLOBAL SETTINGS                                                            */
+/* ========================================================================== */
 
 /* Base */
-* {
-    box-sizing: border-box;
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+
 html,
 body {
     height: 100%;
 }
+
 body {
+    padding-top: var(--header-h);  /* Ensure page content starts below the fixed header */
     margin: 0;
     background: var(--page-bg);
     color: var(--ink);
     font: 15px/1.6 "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI,
         Roboto, Helvetica, Arial;
-}
-a {
-    color: inherit;
-    text-decoration: none;
-}
-.container {
-    width: min(1200px, 92vw);
-    margin: 0 auto;
-}
-
-body {
     min-height: 100svh; /* full viewport height, mobile-safe */
     display: flex;
     flex-direction: column; /* header, main, footer stacked */
 }
 
+/* On detail pages, use the header height */
+
+body.detail-page {
+    padding-top: var(--header-h);
+}
+
+.container {
+    width: min(1200px, 90vw);
+    margin: 0 auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* Let main expand and push footer to the bottom when content is short */
+
 main {
     flex: 1 0 auto;
 }
 
-/* Footer naturally sits at the end; this is optional clarity */
 footer {
-    margin-top: auto;
+    margin-top: auto; /* Footer naturally sits at the end; this is optional clarity */
 }
 
-.section-title {
-    text-align: center;
-    font-weight: 800;
-    letter-spacing: 0.2px;
-    font-size: clamp(24px, 3.2vw, 40px);
-    margin: 0 0 12px;
+/* Scroll-reveal: base + visible state */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(18px) scale(0.985);
+    transition: opacity 0.5s ease,
+        transform 0.6s cubic-bezier(0.2, 0.65, 0.2, 1);
+    will-change: transform, opacity;
 }
 
-.section-sub {
-    color: var(--muted, #6b7280);
-    font-weight: 500;
-    font-size: clamp(15px, 1.5vw, 18px);
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
 }
+
+/* Text settings */
 
 .center {
     text-align: center;
 }
 
+
 /* ========================================================================== */
 /* TOP NAVIGATION BAR                                                         */
 /* ========================================================================== */
 
-/* ===== Header ===== */
 .site-header {
     position: fixed;
     top: 0;
@@ -129,6 +125,7 @@ footer {
     background: transparent;
     transition: background 0.2s ease, color 0.2s ease;
 }
+
 .navbar,
 .menu-bar {
     display: grid;
@@ -137,11 +134,12 @@ footer {
     min-height: var(--header-h); /* lock the height */
     padding: 0; /* padding comes from .container, not the bar */
 }
+
 .brand,
 .menu-top .name {
     font-weight: 800;
-  letter-spacing: .2px;
-  font-size: var(--brand-size);
+    letter-spacing: .2px;
+    font-size: var(--brand-size);
     line-height: 1;
     color: var(--name);
     display:flex;
@@ -152,13 +150,14 @@ footer {
 .tabs {
     display: flex;
     justify-content: center;
-  gap: clamp(16px, 2.2vw, 28px);
+    gap: clamp(16px, 2.2vw, 28px);
 }
+
 .tabs a {
     color: var(--tabs);
     font-weight: 600;
     transition: color 0.15s ease;
-  font-size: var(--tab-size);
+    font-size: var(--tab-size);
 
 }
 .tabs a:hover,
@@ -173,9 +172,10 @@ footer {
 }
 
 /* Phone/Email carousel hover */
+
 .icon {
-  width: clamp(20px, 2.2vw, 24px);
-  height: clamp(20px, 2.2vw, 24px);
+    width: clamp(20px, 2.2vw, 24px);
+    height: clamp(20px, 2.2vw, 24px);
     overflow: hidden;
     position: relative;
     display: inline-block;
@@ -188,8 +188,8 @@ footer {
     transition: transform 0.2s ease;
 }
 .icon i {
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1;
     height: 22px;
     text-align: center;
 }
@@ -205,11 +205,12 @@ footer {
 }
 
 /* Pill */
+
 .pill {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-  padding: var(--pill-pad-y) var(--pill-pad-x);
+    padding: var(--pill-pad-y) var(--pill-pad-x);
     background: var(--pill);
     border: 1px solid #dfe3ea;
     border-radius: 999px;
@@ -218,6 +219,7 @@ footer {
     box-shadow: var(--shadow);
     transition: background 0.15s ease, color 0.15s ease, transform 0.15s ease;
 }
+
 .pill:hover {
     background: var(--pill-hover);
     color: #000;
@@ -225,36 +227,45 @@ footer {
 }
 
 /* Scroll state → dark header */
+
 .scrolled .site-header {
     background: var(--hdr-bg);
 }
+
 .scrolled .brand {
     color: var(--name-dark);
 }
+
 .scrolled .tabs a {
     color: var(--tabs-dark);
 }
+
 .scrolled .tabs a:hover,
 .scrolled .tabs a.active {
     color: var(--tabs-dark-hover);
 }
+
 .scrolled .icon i.first {
     color: var(--tabs-dark);
 }
+
 .scrolled .icon i.second {
     color: #fff;
 }
+
 .scrolled .pill {
     background: rgba(255, 255, 255, 0.12);
     color: var(--tabs-dark);
     border-color: rgba(255, 255, 255, 0.22);
 }
+
 .scrolled .pill:hover {
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
 }
 
 /* Keep pill styling stable even when body.scrolled is set */
+
 .pill-static,
 .scrolled .pill-static {
     background: #e6e9ef;
@@ -269,16 +280,18 @@ footer {
 }
 
 /* ===== Hamburger (its own column so it never hides) ===== */
+
 .hamburger {
     display: none;
-  width: clamp(38px, 5.5svh, 44px);
-  height: clamp(38px, 5.5svh, 44px);
+    width: clamp(38px, 5.5svh, 44px);
+    height: clamp(38px, 5.5svh, 44px);
     border-radius: 10px;
     background: transparent;
     border: 1px solid #dfe3ea;
     position: relative;
     transition: border-color 0.18s ease, background 0.18s ease;
 }
+
 .hb,
 .hamburger::before,
 .hamburger::after {
@@ -290,27 +303,35 @@ footer {
     background: #111;
     transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
 }
+
 .hb {
     top: 20px;
 }
+
 .hamburger::before {
     top: 13px;
 }
+
 .hamburger::after {
     top: 27px;
 }
+
 .hamburger.open .hb {
     opacity: 0;
 }
+
 .hamburger.open::before {
     transform: translateY(7px) rotate(45deg);
 }
+
 .hamburger.open::after {
     transform: translateY(-7px) rotate(-45deg);
 }
+
 .scrolled .hamburger {
     border-color: rgba(255, 255, 255, 0.35);
 }
+
 .scrolled .hb,
 .scrolled .hamburger::before,
 .scrolled .hamburger::after {
@@ -318,6 +339,7 @@ footer {
 }
 
 /* Mobile breakpoint */
+
 @media (max-width: 980px) {
     .tabs,
     .actions {
@@ -332,10 +354,11 @@ footer {
     }
     .menu-bar {
         grid-template-columns: auto 1fr auto;
-    } /* <-- add this */
+    }
 }
 
 /* ===== Fullscreen MOBILE MENU (overlay) ===== */
+
 .menu-overlay {
     position: fixed;
     inset: 0;
@@ -419,49 +442,43 @@ footer {
 }
 
 /* If header was dark when opened, use dark overlay */
+
 .scrolled .menu-overlay {
     background: rgba(11, 15, 20, 0.96);
     color: rgba(255, 255, 255, 0.9);
 }
+
 .scrolled .menu-inner a.active {
     color: #fff;
     text-decoration: underline;
 }
+
 .scrolled .menu-top .name {
     color: #fff;
 }
+
 .scrolled .menu-inner a:hover {
     color: #fff;
 }
+
 .scrolled .menu-social a:hover {
     color: #fff;
 }
 
-/* ===== Hero ===== */
-.hero {
-    padding: clamp(72px, 12vw, 100px) 0 48px;
-    min-height: 60vh;
-    display: grid;
-    place-items: center;
-    text-align: center;
-}
+/* ========================================================================== */
+/* HERO SECTION                                                               */
+/* ========================================================================== */
+
 .hero h1 {
-    margin: 0 0 8px;
-    font-weight: 800;
+    font-weight: 700;
+    line-height: 1.2;
     letter-spacing: 0.2px;
-    font-size: clamp(28px, 4.2vw, 56px);
+    font-size: clamp(38px, 4vw, 60px);
 }
 .hero p {
-    margin: 0;
     color: #475569;
-    font-weight: 500;
-    font-size: clamp(16px, 1.5vw, 20px);
-}
-
-/* small additions to control line-length and center the visual */
-.hero-inner {
-    max-width: 880px;
-    margin: 0 auto;
+    font-weight: 400;
+    font-size: clamp(20px, 1.5vw, 30px);
 }
 .hero-visual {
     width: min(760px, 92vw);
@@ -475,30 +492,79 @@ footer {
     will-change: transform; /* helps parallax smoothness */
 }
 
-/* Scroll-reveal: base + visible state */
-.reveal {
-    opacity: 0;
-    transform: translateY(18px) scale(0.985);
-    transition: opacity 0.5s ease,
-        transform 0.6s cubic-bezier(0.2, 0.65, 0.2, 1);
-    will-change: transform, opacity;
-}
-.reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+.hero.hero--split .hero-inner {
+  display: flex;
+  align-items: center;
+  gap: clamp(16px, 4vw, 48px);
 }
 
-/* Reduced-motion safety */
-@media (prefers-reduced-motion: reduce) {
-    .hero-visual,
-    .reveal {
-        animation: none !important;
-        transition: none !important;
-        transform: none !important;
-    }
+.hero.hero--split .hero-copy {
+  flex: 1 1 420px;
+  max-width: 640px;
 }
 
-/* ===== Offers carousel ===== */
+.hero.hero--split .hero-visual {
+  flex: 1 1 520px;
+  max-width: 680px;
+  margin: 0; /* remove figure default */
+}
+
+/* Stack on small screens */
+
+@media (max-width: 900px) {
+  .hero.hero--split .hero-inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .hero.hero--split .hero-copy {
+    max-width: 720px;
+  }
+  .hero.hero--split .hero-visual {
+    width: 100%;
+  }
+}
+
+
+/* ========================================================================== */
+/* SECTION SETTINGS                                                           */
+/* ========================================================================== */
+
+main > section {
+    padding-block: var(--section-pad);
+}
+
+/* Alternate section paddings */
+
+.pad-none {
+    --section-pad: 0px;
+}
+
+.pad-tight {
+    --section-pad: clamp(5px, 3vw, 30px);
+}
+
+.pad-loose {
+    --section-pad: clamp(20px, 8vw, 70px);
+}
+
+.section-title {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    line-height: 1.2;
+    font-size: clamp(28px, 3vw, 40px);
+}
+
+.section-sub {
+    color: var(--muted, #6b7280);
+    font-weight: 500;
+    font-size: clamp(18px, 3vw, 20px);
+}
+
+
+/* ========================================================================== */
+/* HOME PAGE OFFERS CAROUSEL                                                  */
+/* ========================================================================== */
+
 .offers {
     --gap: 16px;
     --cards-per-view: 3;
@@ -798,7 +864,6 @@ footer {
 /* Line 1: Award program name (same size as your deliverables subtitle scale) */
 .award-caption .cap-1 {
     font-weight: 700;
-    font-size: 12px;
     color: var(--muted, #6b7280);
     line-height: 1.35;
     letter-spacing: 0.2px;
@@ -808,7 +873,6 @@ footer {
 /* Line 2: Level + year (same size as line 1) */
 .award-caption .cap-2 {
     font-weight: 800;
-    font-size: 12px;
     color: var(--muted, #6b7280);
     line-height: 1.35;
     letter-spacing: 0.2px;
@@ -818,7 +882,7 @@ footer {
 /* Line 3: What the award was for (can wrap; keep size consistent) */
 .award-caption .cap-3 {
     font-weight: 600;
-    font-size: clamp(14px, 1.6vw, 16px);
+    font-size: clamp(18px, 1.8vw, 20px);
     line-height: 1.35;
     letter-spacing: 0.2px;
 }
@@ -873,7 +937,7 @@ footer {
     align-items: center;
 }
 .logo img {
-    height: 42px;
+    height: clamp(40px, 3vw, 60px);
     width: auto;
     object-fit: contain;
     transition: transform 0.2s ease, filter 0.2s ease, opacity 0.2s ease;
@@ -1542,3 +1606,84 @@ body.detail-page { padding-top: var(--header-h); }
 .btn-primary:hover { transform: translateY(-1px); }
 .btn-ghost { background: var(--pill, #e6e9ef); color: var(--tabs, #3b3b3b); }
 .btn-ghost:hover { background: var(--pill-hover, #d5dbe4); color:#000; transform: translateY(-1px); }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+--block-h: 80vh; /* exact height of each colored block */
+--gap: 50px; /* fixed 50px visual gap between blocks */
+}
+
+/* One shared parent so stickiness lasts across all blocks */
+.stack { position: relative; padding-top: var(--header-h); }
+
+
+/* The colored blocks that should remain at the top */
+
+
+.block {
+top: var(--header-h);
+position: sticky; /* sticks to viewport top */
+top: 0;
+width: 100%;
+    border: 1px solid var(--border, #e6eaf2);
+    background: var(--panel, #fff);
+    border-radius: 18px;
+    padding: 50px;
+z-index: var(--z, 1); /* later blocks are above earlier ones */
+display: flex;
+  flex-direction: column;   /* stack vertically */
+  align-items: center;      /* horizontal center */
+  justify-content: center;  /* vertical center */
+  gap: 12px;                /* space between the two items */
+  text-align: center;       /* center text inside */
+  min-height: 100%;         /* or 80vh / a fixed height if needed */
+    transition: transform 0.15s ease, box-shadow 0.15s ease,
+        border-color 0.15s ease;
+
+}
+
+
+/* Scroll space so each next block reaches the top after a full viewport */
+.spacer { height: var(--gap); }
+
+
+/* Effects performance hints */
+.block { will-change: transform, filter, opacity; transform-origin: bottom center; }
+
+.awards-newstrip {
+    margin: 0;
+    padding: 0;
+    justify-items: center;
+}
+@media (max-width: 1000px) {
+    .awards-newstrip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (max-width: 600px) {
+    .awards-newstrip {
+        grid-template-columns: 1fr;
+    }
+}
+
+.awards-newstrip img {
+    height: clamp(150px, 20vw, 200px);
+    width: auto;
+    object-fit: contain;
+    border: 0;
+    filter: none !important;
+    filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
+}
