@@ -118,13 +118,16 @@ footer {
 
 .site-header {
     position: fixed;
+    inset: 0 0 auto 0;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: transparent;
+    background: #fff;
     transition: background 0.2s ease, color 0.2s ease;
 }
+
+.navbar{ position: relative; z-index: 1; }
 
 .navbar,
 .menu-bar {
@@ -282,14 +285,15 @@ footer {
 /* ===== Hamburger (its own column so it never hides) ===== */
 
 .hamburger {
+    position: relative;
     display: none;
     width: clamp(38px, 5.5svh, 44px);
     height: clamp(38px, 5.5svh, 44px);
     border-radius: 10px;
     background: transparent;
     border: 1px solid #dfe3ea;
-    position: relative;
     transition: border-color 0.18s ease, background 0.18s ease;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .hb,
@@ -1687,3 +1691,4 @@ display: flex;
     filter: none !important;
     filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.12));
 }
+
