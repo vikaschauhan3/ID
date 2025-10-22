@@ -1092,34 +1092,40 @@ footer {
 }
 .foot {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
     gap: 12px;
-    flex-wrap: nowrap;
-}
-
-/* Left column: can wrap; take remaining space */
-.foot > :first-child {
-    flex: 1 1 auto;   /* grow/shrink */
-    min-width: 0;     /* allow text to wrap instead of forcing overflow */
-    /* optional: word-break if you ever add long URLs/text without spaces */
-    /* word-break: break-word; */
-}
-
-/* Right column (socials): single unbroken line, don’t shrink */
-.foot .social {
-    flex: 0 0 auto;   /* fixed-size based on content */
-    white-space: nowrap;  /* keep icons on one line */
 }
 
 .foot .social a {
-    display: inline-flex;   /* stable inline sizing for icons */
-    align-items: center;
     margin-left: 14px;
     color: #6b7280;
 }
+
 .foot .social a:hover {
     color: #111;
+}
+
+/* Mobile layout: stack and center (adjust breakpoint if you like) */
+@media (max-width: 600px) {
+  .foot {
+    display: flex;               /* works even if already flex on desktop */
+    flex-direction: column;      /* stack left text above socials */
+    align-items: center;         /* center both rows */
+    justify-content: center;
+    gap: 10px;                   /* space between the two rows */
+    text-align: center;          /* center the left text */
+  }
+
+  .foot > :first-child {
+    width: 100%;                 /* let it wrap nicely */
+  }
+
+  .foot .social {
+    display: inline-flex;        /* keep icons on one line */
+    gap: 14px;                   /* spacing between icons */
+    white-space: nowrap;         /* never wrap icons */
+  }
 }
 
 /* ========================================================================== */
