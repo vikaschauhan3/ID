@@ -1113,6 +1113,8 @@ footer {
 }
 
 .foot .social a {
+    display: inline-flex;   /* stable inline sizing for icons */
+    align-items: center;
     margin-left: 14px;
     color: #6b7280;
 }
