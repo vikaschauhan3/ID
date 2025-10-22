@@ -90,19 +90,70 @@ footer {
     margin-top: auto; /* Footer naturally sits at the end; this is optional clarity */
 }
 
-/* Scroll-reveal: base + visible state */
-
+/* Scroll-reveal: stronger motion + subtle blur */
 .reveal {
-    opacity: 0;
-    transform: translateY(18px) scale(0.985);
-    transition: opacity 0.5s ease,
-        transform 0.6s cubic-bezier(0.2, 0.65, 0.2, 1);
-    will-change: transform, opacity;
+  --rev-dur: .8s;
+  --rev-ease: cubic-bezier(.2,.65,.2,1);
+
+  opacity: 0;
+  transform: translateY(28px) scale(.985); /* more distance */
+  filter: blur(6px);                        /* subtle blur */
+  transition:
+    opacity var(--rev-dur) var(--rev-ease),
+    transform calc(var(--rev-dur) + .05s) var(--rev-ease),
+    filter var(--rev-dur) var(--rev-ease);
+  will-change: transform, opacity, filter;
 }
 
 .reveal.is-visible {
-    opacity: 1;
-    transform: translateY(0) scale(1);
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Apply to a container inside your section: .stagger > * will animate in sequence */
+.stagger > * {
+  opacity: 0;
+  transform: translateY(18px) scale(.985);
+  filter: blur(4px);
+  transition:
+    opacity .65s var(--rev-ease),
+    transform .65s var(--rev-ease),
+    filter .65s var(--rev-ease);
+}
+
+/* When the section is visible, reveal children with delays */
+.reveal.is-visible .stagger > * {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* Stagger timings (tweak as needed) */
+.reveal.is-visible .stagger > *:nth-child(1) { transition-delay: .05s; }
+.reveal.is-visible .stagger > *:nth-child(2) { transition-delay: .14s; }
+.reveal.is-visible .stagger > *:nth-child(3) { transition-delay: .23s; }
+.reveal.is-visible .stagger > *:nth-child(4) { transition-delay: .32s; }
+.reveal.is-visible .stagger > *:nth-child(5) { transition-delay: .41s; }
+.reveal.is-visible .stagger > *:nth-child(6) { transition-delay: .50s; }
+/* add more nth-child rules if needed */
+
+.reveal.fade-right { transform: translateX(-28px); }
+.reveal.fade-left  { transform: translateX(28px);  }
+.reveal.zoom-in    { transform: translateY(22px) scale(.96); }
+
+.reveal.fade-right { transform: translateX(-28px); }
+.reveal.fade-left  { transform: translateX(28px);  }
+.reveal.zoom-in    { transform: translateY(22px) scale(.96); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal.is-visible,
+  .stagger > *, .reveal.is-visible .stagger > * {
+    transition: none !important;
+    filter: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }
 
 /* Text settings */
