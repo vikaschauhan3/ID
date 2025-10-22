@@ -1095,7 +1095,23 @@ footer {
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    flex-wrap: nowrap;
 }
+
+/* Left column: can wrap; take remaining space */
+.foot > :first-child {
+    flex: 1 1 auto;   /* grow/shrink */
+    min-width: 0;     /* allow text to wrap instead of forcing overflow */
+    /* optional: word-break if you ever add long URLs/text without spaces */
+    /* word-break: break-word; */
+}
+
+/* Right column (socials): single unbroken line, don’t shrink */
+.foot .social {
+    flex: 0 0 auto;   /* fixed-size based on content */
+    white-space: nowrap;  /* keep icons on one line */
+}
+
 .foot .social a {
     margin-left: 14px;
     color: #6b7280;
