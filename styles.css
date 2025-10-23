@@ -55,18 +55,15 @@ body {
 }
 
 body {
-  padding-top: var(--header-h);
-  /* Ensure page content starts below the fixed header */
+  padding-top: var(--header-h);   /* Ensure page content starts below the fixed header */
   margin: 0;
   background: var(--page-bg);
   color: var(--ink);
   font: 15px/1.6 "Poppins", ui-sans-serif, system-ui, -apple-system, Segoe UI,
     Roboto, Helvetica, Arial;
-  min-height: 100svh;
-  /* full viewport height, mobile-safe */
+  min-height: 100svh;   /* full viewport height, mobile-safe */
   display: flex;
-  flex-direction: column;
-  /* header, main, footer stacked */
+  flex-direction: column;   /* header, main, footer stacked */
 }
 
 /* ===== Base Adjustments ===== */
@@ -94,23 +91,28 @@ main {
 }
 
 footer {
-  margin-top: auto;
-  /* Footer naturally sits at the end; this is optional clarity */
+  margin-top: auto;   /* Footer naturally sits at the end; this is optional clarity */
 }
 
 /* Scroll-reveal: base + visible state */
 
 .reveal {
+  --rev-dur: .8s;
+  --rev-ease: cubic-bezier(.2, .65, .2, 1);
   opacity: 0;
-  transform: translateY(18px) scale(0.985);
-  transition: opacity 0.5s ease,
-    transform 0.6s cubic-bezier(0.2, 0.65, 0.2, 1);
-  will-change: transform, opacity;
+  transform: translateY(28px) scale(.985); /* more distance */
+  filter: blur(6px); /* subtle blur */
+  transition:
+    opacity var(--rev-dur) var(--rev-ease),
+    transform calc(var(--rev-dur) + .05s) var(--rev-ease),
+    filter var(--rev-dur) var(--rev-ease);
+  will-change: transform, opacity, filter;
 }
 
 .reveal.is-visible {
   opacity: 1;
   transform: translateY(0) scale(1);
+  filter: blur(0);
 }
 
 /* Text settings */
@@ -142,13 +144,10 @@ footer {
 .navbar,
 .menu-bar {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
-  /* brand | tabs | actions | hamburger */
+  grid-template-columns: auto 1fr auto auto; /* brand | tabs | actions | hamburger */
   align-items: center;
-  min-height: var(--header-h);
-  /* lock the height */
-  padding: 0;
-  /* padding comes from .container, not the bar */
+  min-height: var(--header-h); /* lock the height */
+  padding: 0; /* padding comes from .container, not the bar */
 }
 
 .brand,
@@ -305,7 +304,8 @@ footer {
 
 .hamburger {
   position: relative;
-  display: none;
+  display: none; 
+  /*  z-index: 2000; */
   width: clamp(38px, 5.5svh, 44px);
   height: clamp(38px, 5.5svh, 44px);
   border-radius: 10px;
@@ -390,7 +390,7 @@ footer {
   position: fixed;
   inset: 0;
   display: none;
-  z-index: 2000;
+  z-index: 2000; /* Previously 1500 */
   background: rgba(255, 255, 255, 0.94);
   color: rgba(0, 0, 0, 0.72);
   backdrop-filter: saturate(140%) blur(6px);
@@ -529,8 +529,7 @@ footer {
   background: var(--panel, #fff);
   overflow: visible;
   aspect-ratio: 16/9;
-  will-change: transform;
-  /* helps parallax smoothness */
+  will-change: transform;   /* helps parallax smoothness */
 }
 
 
@@ -555,8 +554,7 @@ footer {
   border-radius: 16px;
   padding: 14px 16px;
   width: clamp(220px, 28vw, 340px);
-  transform: translateY(0);
-  /* JS updates translateY */
+  transform: translateY(0);   /* JS updates translateY */
   will-change: transform;
 }
 
@@ -585,11 +583,9 @@ footer {
 }
 
 .hv-title i {
-  display: inline-block;
-  /* removes baseline quirks */
+  display: inline-block;   /* removes baseline quirks */
   line-height: 1;
-  font-size: 2em;
-  /* slightly larger than text */
+  font-size: 2em;   /* slightly larger than text */
   margin: 0;
   padding: 0;
 }
@@ -667,8 +663,7 @@ main>section {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scroll-snap-type: x mandatory;
-  padding-bottom: 4px;
-  /* room for iOS scroll indicator */
+  padding-bottom: 4px;   /* room for iOS scroll indicator */
 }
 
 .offers-track {
@@ -763,10 +758,8 @@ main>section {
 /* Offers: hide horizontal scrollbar cross-browser */
 .offers-viewport {
   overflow-x: auto;
-  -ms-overflow-style: none;
-  /* old Edge/IE */
-  scrollbar-width: none;
-  /* Firefox */
+  -ms-overflow-style: none;   /* old Edge/IE */
+  scrollbar-width: none;   /* Firefox */
 }
 
 .offers-viewport::-webkit-scrollbar {
@@ -858,8 +851,7 @@ main>section {
   gap: 12px;
   border: 1px solid var(--border, #e6eaf2);
   background: var(--panel, #fff);
-  border-radius: 18px;
-  /* box-shadow:0 6px 18px rgba(0,0,0,.06); */
+  border-radius: 18px;   /* box-shadow:0 6px 18px rgba(0,0,0,.06); */
   padding: 10px;
   transition: transform 0.15s ease, box-shadow 0.15s ease,
     border-color 0.15s ease;
@@ -970,8 +962,7 @@ main>section {
 .award-caption {
   margin-top: 12px;
   display: grid;
-  grid-template-rows: auto auto auto auto;
-  /* 4 fixed rows */
+  grid-template-rows: auto auto auto auto; /* 4 fixed rows */
   row-gap: 6px;
   justify-items: center;
 }
@@ -982,8 +973,7 @@ main>section {
   color: var(--muted, #6b7280);
   line-height: 1.35;
   letter-spacing: 0.2px;
-  min-height: 1.35em;
-  /* alignment buffer */
+  min-height: 1.35em; /* alignment buffer */
 }
 
 /* Line 2: Level + year (same size as line 1) */
@@ -1005,8 +995,7 @@ main>section {
 
 /* Line 4: Client & contribution (smaller, muted, centered) */
 .award-caption .cap-4 {
-  margin-top: 8px;
-  /* extra space before the last line */
+  margin-top: 8px; /* extra space before the last line */
   font-size: 13px;
   color: var(--muted, #6b7280);
   line-height: 1.35;
@@ -1016,10 +1005,8 @@ main>section {
 /* ===== New award behavior ===== */
 
 :root {
-  --block-h: 80vh;
-  /* exact height of each colored block */
-  --gap: 50px;
-  /* fixed 50px visual gap between blocks */
+  --block-h: 80vh; /* exact height of each colored block */
+  --gap: 50px; /* fixed 50px visual gap between blocks */
 }
 
 /* One shared parent so stickiness lasts across all blocks */
@@ -1032,32 +1019,23 @@ main>section {
 
 .block {
   top: var(--header-h);
-  position: sticky;
-  /* sticks to viewport top */
+  position: sticky; /* sticks to viewport top */
   top: 0;
   width: 100%;
   border: 1px solid var(--border, #e6eaf2);
   background: var(--panel, #fff);
   border-radius: 18px;
   padding: 50px;
-  z-index: var(--z, 1);
-  /* later blocks are above earlier ones */
+  z-index: var(--z, 1); /* later blocks are above earlier ones */
   display: flex;
-  flex-direction: column;
-  /* stack vertically */
-  align-items: center;
-  /* horizontal center */
-  justify-content: center;
-  /* vertical center */
-  gap: 12px;
-  /* space between the two items */
-  text-align: center;
-  /* center text inside */
-  min-height: 100%;
-  /* or 80vh / a fixed height if needed */
+  flex-direction: column; /* stack vertically */
+  align-items: center; /* horizontal center */
+  justify-content: center; /* vertical center */
+  gap: 12px; /* space between the two items */
+  text-align: center; /* center text inside */
+  min-height: 100%; /* or 80vh / a fixed height if needed */
   transition: transform 0.15s ease, box-shadow 0.15s ease,
     border-color 0.15s ease;
-
 }
 
 /* Scroll space so each next block reaches the top after a full viewport */
@@ -1127,8 +1105,7 @@ main>section {
   gap: var(--gap);
   white-space: nowrap;
   will-change: transform;
-  animation: marquee 28s linear infinite;
-  /* always animating */
+  animation: marquee 28s linear infinite; /* always animating */
 }
 
 /* Logos */
@@ -1247,12 +1224,9 @@ main>section {
 /* same width as card, centered */
 .mini-contacts {
   display: grid;
-  grid-template-columns: repeat(3, max-content);
-  /* auto-sized tiles */
-  justify-content: center;
-  /* center the whole group */
-  column-gap: 42px;
-  /* equal gap between tiles */
+  grid-template-columns: repeat(3, max-content);   /* auto-sized tiles */
+  justify-content: center;  /* center the whole group */
+  column-gap: 42px;  /* equal gap between tiles */
   align-items: center;
 }
 
@@ -1266,8 +1240,7 @@ main>section {
 .mini-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  /* remove any max-width you may have added earlier */
+  gap: 12px;  /* remove any max-width you may have added earlier */
   max-width: none;
 }
 
@@ -1327,6 +1300,18 @@ footer {
   color: #111;
 }
 
+/* Mobile layout: stack and center (adjust breakpoint if you like) */
+@media (max-width: 600px) {
+  .foot {
+    display: flex;               /* works even if already flex on desktop */
+    flex-direction: column;      /* stack left text above socials */
+    align-items: center;         /* center both rows */
+    justify-content: center;
+    gap: 10px;                   /* space between the two rows */
+    text-align: center;          /* center the left text */
+  }
+}
+
 /* ========================================================================== */
 /* ABOUT PAGE                                                   */
 /* ========================================================================== */
@@ -1342,8 +1327,7 @@ footer {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.05fr;
-  /* photo | text */
+  grid-template-columns: 1fr 1.05fr;  /* photo | text */
   gap: clamp(24px, 5vw, 72px);
   align-items: center;
 }
@@ -1422,8 +1406,7 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
-  /* The magic: apply the SVG sketch filter */
+  display: block;  /* The magic: apply the SVG sketch filter */
   filter: url(#pencil-sketch);
 }
 
@@ -1556,8 +1539,7 @@ footer {
 
 .portfolio-hero {
   text-align: center;
-  margin-top: 24px;
-  /* leave room for fixed header */
+  margin-top: 24px;  /* leave room for fixed header */
 }
 
 .portfolio-tabs {
@@ -1654,8 +1636,7 @@ footer {
   margin: 0;
   display: grid;
   place-items: stretch;
-  aspect-ratio: 16/9;
-  /* consistent tiles */
+  aspect-ratio: 16/9; /* consistent tiles */
 }
 
 .pcard img {
@@ -1714,8 +1695,7 @@ footer {
   content: "";
   position: absolute;
   inset: 0;
-  z-index: 1;
-  /* below .pcard-cap (which already sits above) */
+  z-index: 1; /* below .pcard-cap (which already sits above) */
   pointer-events: none;
 
   /* bottom-up gradient + light uniform veil */
@@ -1726,8 +1706,7 @@ footer {
       rgba(0, 0, 0, 0) 72%),
     rgba(0, 0, 0, .10);
   transition: opacity .25s ease;
-  opacity: 0.5;
-  /* adjust to taste */
+  opacity: 0.5;  /* adjust to taste */
 }
 
 /* Ensure caption stays on top of the overlay */
@@ -1747,16 +1726,11 @@ footer {
 
 /* ===== Banner chevrons “>” / “<” (stroke only) ===== */
 :root {
-  --chev-size: 28px;
-  /* arm length  (was 18px) */
-  --chev-thick: 2px;
-  /* stroke width (was 3px) */
-  --chev-color: #fff;
-  /* arrow color */
-  --chev-hit: 60px;
-  /* .hero-nav width/height */
-  --chev-gap: 16px;
-  /* breathing room between chevron and text */
+  --chev-size: 28px; /* arm length  (was 18px) */
+  --chev-thick: 2px;   /* stroke width (was 3px) */
+  --chev-color: #fff;   /* arrow color */
+  --chev-hit: 60px;   /* .hero-nav width/height */
+  --chev-gap: 16px;   /* breathing room between chevron and text */
 }
 
 .hero-nav {
@@ -1765,8 +1739,7 @@ footer {
   transform: translateY(-50%);
   display: block;
   width: 60px;
-  height: 60px;
-  /* bigger click target */
+  height: 60px;   /* bigger click target */
   text-decoration: none;
   border-radius: 999px;
   background: transparent;
@@ -1855,17 +1828,13 @@ footer {
 
 /* Filter toggle uses site pill styles */
 .filter-toggle {
-  inline-size: 160px;
-  /* width */
-  justify-content: center;
-  /* center icon+text inside */
-  display: none;
-  /* shown only on small screens */
+  inline-size: 160px;   /* width */
+  justify-content: center;   /* center icon+text inside */
+  display: none;   /* shown only on small screens */
   align-items: center;
   gap: 10px;
   font: inherit;
-  font-weight: 700;
-  /* or bold */
+  font-weight: 700;   /* or bold */
   cursor: pointer;
 }
 
