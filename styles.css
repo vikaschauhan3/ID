@@ -184,17 +184,20 @@ footer {
 .actions {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 16px;
 }
 
 /* Phone/Email carousel hover */
 
 .icon {
-  width: clamp(20px, 2.2vw, 24px);
-  height: clamp(20px, 2.2vw, 24px);
+  --icon: clamp(20px, 2.2vw, 24px);  /* single source of truth */
+  --gap: 0px;                        /* set to 4–6px if you want space between icons */
+  width: var(--icon);
+  height: var(--icon);
   overflow: hidden;
   position: relative;
   display: inline-block;
+  line-height: 0;                    /* avoids baseline quirks */
 }
 
 .icon .roller {
@@ -202,13 +205,18 @@ footer {
   inset: 0;
   display: flex;
   flex-direction: column;
+  will-change: transform;
+  backface-visibility: hidden;       /* avoids sub-pixel shimmer */
   transition: transform 0.2s ease;
 }
 
 .icon i {
-  font-size: clamp(18px, 2vw, 22px);
-  line-height: 1;
-  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--icon);
+  line-height: var(--icon);
+  font-size: calc(var(--icon) * 0.9); /* keep glyph inside the box */
   text-align: center;
 }
 
@@ -221,8 +229,12 @@ footer {
   color: #000;
 }
 
+/* Optional: add hidden spacing between the two stacked icons */
+.icon i.second { margin-top: var(--gap); }
+
+/* Slide by exactly one icon height (+ gap if defined) */
 .icon:hover .roller {
-  transform: translateY(-22px);
+  transform: translateY(calc(-1 * (var(--icon) + var(--gap))));
 }
 
 /* Pill */
