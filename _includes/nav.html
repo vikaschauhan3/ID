@@ -1,69 +1,64 @@
 {%- assign current = page.url | replace:'index.html','/' | replace: '//','/' -%}
+
 <!-- Header -->
 <header class="site-header" role="banner">
   <div class="container navbar">
+
     <!-- Brand -->
     <a class="brand" href="{{ '/' | relative_url }}" aria-label="Vikas Chauhan — Home">
-            Vikas Chauhan
-        </a>
+    Vikas Chauhan
+    </a>
 
-        <!-- Primary nav -->
-        <nav class="tabs" aria-label="Primary">
-            <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}">Home</a>
-            <a href="{{ '/about.html' | relative_url }}" class="{% if current == '/about.html' %}active{% endif %}">About</a>
-            <a href="{{ '/portfolio.html' | relative_url }}" class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}">Portfolio</a>
-        </nav>
+    <!-- Primary nav -->
+    <nav class="tabs" aria-label="Primary">
+      <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}">Home</a>
+      <a href="{{ '/about.html' | relative_url }}" class="{% if current == '/about.html' %}active{% endif %}">About</a>
+      <a href="{{ '/portfolio.html' | relative_url }}" class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}">Portfolio</a>
+    </nav>
 
-        <!-- Actions -->
-        <div class="actions">
-            <a class="icon" href="tel:+971552540284" title="Call Vikas" aria-label="Call Vikas">
-                <span class="roller">
-          <i class="fa-solid fa-phone first"></i>
-          <i class="fa-solid fa-phone second"></i>
-        </span>
-            </a>
-            <a class="icon" href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio"
-                title="Email Vikas" aria-label="Email Vikas">
-                <span class="roller">
-          <i class="fa-solid fa-envelope first"></i>
-          <i class="fa-solid fa-envelope second"></i>
-        </span>
-            </a>
-            <a class="pill" href="{{ '/contact.html' | relative_url }}">Contact me</a>
-        </div>
-
-        <!-- Menu toggle -->
-        <button id="hamburger"
-            class="hamburger"
-            type="button"
-            aria-label="Open menu"
-            aria-controls="menu"
-            aria-expanded="false">
-      <span class="hb"></span>
-    </button>
+    <!-- Actions -->
+    <div class="actions">
+      <a class="icon" href="tel:+971552540284" title="Call Vikas" aria-label="Call Vikas">
+      <span class="roller">
+      <i class="fa-solid fa-phone first"></i>
+      <i class="fa-solid fa-phone second"></i>
+      </span>
+      </a>
+      <a class="icon" href="mailto:vikas.chauhan3@gmail.com?subject=Inquiry%20from%20Portfolio"
+        title="Email Vikas" aria-label="Email Vikas">
+      <span class="roller">
+      <i class="fa-solid fa-envelope first"></i>
+      <i class="fa-solid fa-envelope second"></i>
+      </span>
+      </a>
+      <a class="pill" href="{{ '/contact.html' | relative_url }}">Contact me</a>
     </div>
+
+    <!-- Menu toggle -->
+    <button id="hamburger" class="hamburger" type="button" aria-label="Open menu" aria-controls="menu" aria-expanded="false">
+    <span class="hb"></span>
+    </button>
+
+  </div>
 </header>
 
 <!-- Mobile Menu -->
 <div id="menu" class="menu-overlay" aria-hidden="true" role="dialog" aria-label="Mobile menu">
-    <div class="menu-top">
-        <div class="container menu-bar">
-            <div class="brand">Vikas Chauhan</div>
-            <button id="closeMenu"
-              class="hamburger open"
-              type="button"
-              aria-label="Close menu"
-              aria-controls="menu"
-              aria-expanded="true">
-        <span class="hb"></span>
-      </button>
-        </div>
-    </div>
 
-    <div class="menu-inner" role="menu">
-        <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}" role="menuitem">Home</a>
-        <a href="{{ '/about.html' | relative_url }}" class="{% if current == '/about.html' %}active{% endif %}" role="menuitem">About</a>
-        <a href="{{ '/portfolio.html' | relative_url }}" class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}" role="menuitem">Portfolio</a>
-        <a href="{{ '/contact.html' | relative_url }}" class="{% if current == '/contact.html' %}active{% endif %}" role="menuitem">Contact me</a>
+  <div class="menu-top">
+    <div class="container menu-bar">
+      <div class="brand">Vikas Chauhan</div>
+      <button id="closeMenu" class="hamburger open" type="button" aria-label="Close menu" aria-controls="menu" aria-expanded="true">
+      <span class="hb"></span>
+      </button>
     </div>
+  </div>
+
+  <div class="menu-inner" role="menu">
+    <a href="{{ '/index.html' | relative_url }}" class="{% if current == '/' %}active{% endif %}" role="menuitem">Home</a>
+    <a href="{{ '/about.html' | relative_url }}" class="{% if current == '/about.html' %}active{% endif %}" role="menuitem">About</a>
+    <a href="{{ '/portfolio.html' | relative_url }}" class="{% if current == '/portfolio.html' or current contains '/portfolio/' %}active{% endif %}" role="menuitem">Portfolio</a>
+    <a href="{{ '/contact.html' | relative_url }}" class="{% if current == '/contact.html' %}active{% endif %}" role="menuitem">Contact me</a>
+  </div>
+
 </div>
