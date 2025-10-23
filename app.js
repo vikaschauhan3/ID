@@ -518,3 +518,52 @@ if (heroEl && cardA && cardB && !prefersReduced) {
   // Initialize
   onScroll();
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+  const form   = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  const submit = document.getElementById('contact-submit');
+
+  if (!form) return;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Basic HTML5 validation gate
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
+    status.classList.remove('visually-hidden');
+    status.textContent = 'Sending…';
+    submit.disabled = true;
+
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (res.ok) {
+        form.reset();
+        status.textContent = 'Thanks! I’ll get back to you shortly.';
+      } else {
+        // Parse error details (if any)
+        let msg = 'Sorry—there was a problem. Please try again.';
+        try {
+          const data = await res.json();
+          if (data && data.errors && data.errors.length) {
+            msg = data.errors.map(e => e.message).join(', ');
+          }
+        } catch {}
+        status.textContent = msg;
+      }
+    } catch {
+      status.textContent = 'Network error. Please try again.';
+    } finally {
+      submit.disabled = false;
+    }
+  });
+});
