@@ -29,28 +29,54 @@ window.addEventListener('keydown', (e) => {
 		menu?.classList.remove('open');
 	}
 });
-/* app.js — parallax + scroll-reveal */
-(function() {
-	// ---- Parallax on hero SVG groups ----
-	const hero = document.querySelector('.hero-visual');
-	const card = document.getElementById('courseCard');
-	const nodes = document.getElementById('pathNodes');
-	const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-	function parallax() {
-		if (!hero || !card || !nodes || reduceMotion) return;
-		const rect = hero.getBoundingClientRect();
-		// progress: -1 (above) .. 0 (centered) .. +1 (below)
-		const progress = ((rect.top + rect.height / 2) - window.innerHeight / 2) / (window.innerHeight / 2);
-		// clamp
-		const p = Math.max(-1, Math.min(1, progress));
-		// opposing subtle moves (adjust multipliers to taste)
-		const cardY = p * -12; // slower
-		const nodesY = p * 20; // faster
-		const nodesR = p * 2; // tiny rotate for life
-		card.style.transform = `translate(30px, ${40 + cardY}px)`; // preserve original translate
-		nodes.style.transform = `translate(380px, ${80 + nodesY}px) rotate(${nodesR}deg)`;
-	}
+
+/* app.js — parallax + scroll-reveal */
+
+(function() {
+	// ---- Parallax on hero-visual image + HTML cards ----
+const heroEl = document.querySelector('.hero-visual');
+const cardA  = document.getElementById('hvCardA');
+const cardB  = document.getElementById('hvCardB');
+const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (heroEl && cardA && cardB && !prefersReduced) {
+  let ticking = false;
+
+  const onScrollOrResize = () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(updateParallax);
+    }
+  };
+
+  window.addEventListener('scroll', onScrollOrResize, { passive: true });
+  window.addEventListener('resize', onScrollOrResize);
+  updateParallax();
+
+  function updateParallax() {
+    ticking = false;
+
+    const rect = heroEl.getBoundingClientRect();
+    const vh = window.innerHeight || 1;
+
+    // progress around viewport center → clamp to [-1, 1]
+    const p = ((rect.top + rect.height / 2) - vh / 2) / (vh / 2);
+    const clamped = Math.max(-1, Math.min(1, p));
+
+    // BOTH cards move UP (negative translateY)
+    const baseRange = 160;   // px travel at speed=1 (tune)
+    const speedA = 0.35;     // larger/faster
+    const speedB = 0.25;     // smaller/slower
+
+    const yA = -(clamped * baseRange * speedA);
+    const yB = -(clamped * baseRange * speedB);
+
+    cardA.style.transform = `translateY(${yA.toFixed(1)}px)`;
+    cardB.style.transform = `translateY(${yB.toFixed(1)}px)`;
+  }
+}
+
 	// RAF-ticked scroll listener for smoothness
 	let ticking = false;
 
