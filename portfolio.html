@@ -2,90 +2,84 @@
 layout: default
 title: Portfolio — Vikas Chauhan
 ---
-
 <section class="portfolio-hero pad-tight container">
-    <h1 class="section-title">Portfolio</h1>
-    <p class="section-sub">Selected recent projects and samples that reflect my work.</p>
+  <h1 class="section-title">Portfolio</h1>
+  <p class="section-sub">Selected recent projects and samples that reflect my work.</p>
 
-    <!-- Filters -->
-    <div class="filters" data-behavior="responsive-filters">
+  <!-- Filters -->
+  <div class="filters" data-behavior="responsive-filters">
+    <button id="filterToggle"
+      class="filter-toggle pill pill-static"
+      type="button"
+      aria-expanded="false"
+      aria-controls="filtersList">
+    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+    <span>Filter</span>
+    </button>
 
-        <button id="filterToggle"
-              class="filter-toggle pill pill-static"
-              type="button"
-              aria-expanded="false"
-              aria-controls="filtersList">
-        <i class="fa-solid fa-plus" aria-hidden="true"></i>
-        <span>Filter</span>
-      </button>
-
-        <div id="filtersList" class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
-            <button class="ptab active" data-filter="all" role="tab" aria-selected="true">all</button>
-            <button class="ptab" data-filter="articulate-rise" role="tab" aria-selected="false">articulate-rise</button>
-            <button class="ptab" data-filter="vyond" role="tab" aria-selected="false">vyond</button>
-            <button class="ptab" data-filter="elearning" role="tab" aria-selected="false">elearning</button>
-            <button class="ptab" data-filter="microlearning" role="tab" aria-selected="false">microlearning</button>            
-            <button class="ptab" data-filter="animation" role="tab" aria-selected="false">animation</button>
-            <button class="ptab" data-filter="video" role="tab" aria-selected="false">video</button>
-        </div>
-        
+    <div id="filtersList" class="portfolio-tabs" role="tablist" aria-label="Portfolio categories">
+      <button class="ptab active" data-filter="all" role="tab" aria-selected="true">all</button>
+      <button class="ptab" data-filter="articulate-rise" role="tab" aria-selected="false">articulate-rise</button>
+      <button class="ptab" data-filter="vyond" role="tab" aria-selected="false">vyond</button>
+      <button class="ptab" data-filter="elearning" role="tab" aria-selected="false">elearning</button>
+      <button class="ptab" data-filter="microlearning" role="tab" aria-selected="false">microlearning</button>            
+      <button class="ptab" data-filter="animation" role="tab" aria-selected="false">animation</button>
+      <button class="ptab" data-filter="video" role="tab" aria-selected="false">video</button>
     </div>
+
+  </div>
 </section>
 
 <!-- Grid -->
 <section class="container pad-tight">
-    <div id="portfolioGrid" class="portfolio-grid">
+  <div id="portfolioGrid" class="portfolio-grid">
 
-        <!-- Card -->
-        <a class="pcard" href="{{ '/assets/portfolio/client_centered_communication/index.html' | relative_url }}"
-            data-cat="articulate-rise elearning microlearning">
-            <figure class="pcard-fig">
-                <img src="{{ '/assets/portfolio/client_centered_communication/card.jpg' | relative_url }}" alt="Client centered communication screenshot">
-                <figcaption class="pcard-cap">
-                    <span class="pcard-title">Client Centered Communication</span>
-                    <span class="pcard-tags">rise • elearning • microlearning</span>
-                </figcaption>
-            </figure>
-        </a>
+    <!-- Card -->
+    <a class="pcard" href="{{ '/assets/portfolio/client_centered_communication/index.html' | relative_url }}"
+      data-cat="articulate-rise elearning microlearning">
+      <figure class="pcard-fig">
+        <img src="{{ '/assets/portfolio/client_centered_communication/card.jpg' | relative_url }}" alt="Client centered communication screenshot">
+        <figcaption class="pcard-cap">
+          <span class="pcard-title">Client Centered Communication</span>
+          <span class="pcard-tags">rise • elearning • microlearning</span>
+        </figcaption>
+      </figure>
+    </a>
 
-        <!-- Card -->
-        <a class="pcard" href="{{ '/assets/portfolio/cmi_video_series/index.html' | relative_url }}"
-            data-cat="vyond elearning animation video microlearning">
-            <figure class="pcard-fig">
-                <img src="{{ '/assets/portfolio/cmi_video_series/card.jpg' | relative_url }}" alt="CMI video series screenshot">
-                <figcaption class="pcard-cap">
-                    <span class="pcard-title">CMI Video Series</span>
-                    <span class="pcard-tags">vyond • elearning • animation • video • microlearning</span>
-                </figcaption>
-            </figure>
-        </a>
+    <!-- Card -->
+    <a class="pcard" href="{{ '/assets/portfolio/cmi_video_series/index.html' | relative_url }}"
+      data-cat="vyond elearning animation video microlearning">
+      <figure class="pcard-fig">
+        <img src="{{ '/assets/portfolio/cmi_video_series/card.jpg' | relative_url }}" alt="CMI video series screenshot">
+        <figcaption class="pcard-cap">
+          <span class="pcard-title">CMI Video Series</span>
+          <span class="pcard-tags">vyond • elearning • animation • video • microlearning</span>
+        </figcaption>
+      </figure>
+    </a>
 
-        <!-- Card -->
-        <a class="pcard" href="{{ '/assets/portfolio/innovation_labs/index.html' | relative_url }}"
-            data-cat="vyond animation video">
-            <figure class="pcard-fig">
-                <img src="{{ '/assets/portfolio/innovation_labs/card.jpg' | relative_url }}" alt="CMI video series screenshot">
-                <figcaption class="pcard-cap">
-                    <span class="pcard-title">Innovation Labs</span>
-                    <span class="pcard-tags">vyond • animation • video</span>
-                </figcaption>
-            </figure>
-        </a>
+    <!-- Card -->
+    <a class="pcard" href="{{ '/assets/portfolio/innovation_labs/index.html' | relative_url }}"
+      data-cat="vyond animation video">
+      <figure class="pcard-fig">
+        <img src="{{ '/assets/portfolio/innovation_labs/card.jpg' | relative_url }}" alt="CMI video series screenshot">
+        <figcaption class="pcard-cap">
+          <span class="pcard-title">Innovation Labs</span>
+          <span class="pcard-tags">vyond • animation • video</span>
+        </figcaption>
+      </figure>
+    </a>
 
-        <!-- Card -->
-        <a class="pcard" href="{{ '/assets/portfolio/video_based_learning/index.html' | relative_url }}" data-cat="canvas blended video">
-            <figure class="pcard-fig">
-                <img src="{{ '/assets/portfolio/video_based_learning/card.jpg' | relative_url }}" alt="video learning screenshot">
-                <figcaption class="pcard-cap">
-                    <span class="pcard-title">Video Based Courses</span>
-                    <span class="pcard-tags">canvas • blended • video</span>
-                </figcaption>
-            </figure>
-        </a>
-
-        <!-- Add more <a class="pcard">…</a> items as needed. Just tag data-cat. -->
-
-    </div>
-
+    <!-- Card -->
+    <a class="pcard" href="{{ '/assets/portfolio/video_based_learning/index.html' | relative_url }}" data-cat="canvas blended video">
+      <figure class="pcard-fig">
+        <img src="{{ '/assets/portfolio/video_based_learning/card.jpg' | relative_url }}" alt="video learning screenshot">
+        <figcaption class="pcard-cap">
+          <span class="pcard-title">Video Based Courses</span>
+          <span class="pcard-tags">canvas • blended • video</span>
+        </figcaption>
+      </figure>
+    </a>
+    <!-- Add more <a class="pcard">…</a> items as needed. Just tag data-cat. -->
+  </div>
 </section>
-
