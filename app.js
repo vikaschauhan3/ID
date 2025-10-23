@@ -440,12 +440,12 @@ if (heroEl && cardA && cardB && !prefersReduced) {
   btn.addEventListener('click', () => toggle());
 
   // Auto-close after picking a filter on phones
-  panel.addEventListener('click', (e) => {
-    if (e.target?.classList.contains('ptab') &&
-        window.matchMedia('(max-width: 780px)').matches) {
-      toggle(false);
-    }
-  });
+  // panel.addEventListener('click', (e) => {
+    // if (e.target?.classList.contains('ptab') &&
+        // window.matchMedia('(max-width: 780px)').matches) {
+      // toggle(false);
+    // }
+  // });
 
   // Reset when resizing to desktop
   const mq = window.matchMedia('(min-width: 781px)');
