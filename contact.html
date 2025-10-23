@@ -10,29 +10,31 @@ title: Contact — Vikas Chauhan
     </p>
 
     <div class="card">
-  <form id="contact-form" action="https://formspree.io/f/mpwygelq" method="POST" novalidate>
-    <div class="row">
-      <input name="name" placeholder="Your name" required>
-      <input name="email" type="email" placeholder="Email" required>
-      <input name="company" placeholder="Company (optional)">
-      <input name="role" placeholder="Role (optional)">
-      <textarea name="message" placeholder="How can I help?" required></textarea>
+        <form id="contact-form" action="https://formspree.io/f/mpwygelq" method="POST" novalidate>
+            <div class="row">
+                <input name="name" placeholder="Your name" required>
+                <input name="email" type="email" placeholder="Email" required>
+                <input name="company" placeholder="Company (optional)">
+                <input name="role" placeholder="Role (optional)">
+                <textarea name="message" placeholder="How can I help?" required></textarea>
+            </div>
+
+            <!-- Optional hidden fields -->
+            <input type="hidden" name="_subject" value="Message from Portfolio Site">
+            <input type="text"   name="_gotcha" style="display:none"> <!-- honeypot -->
+
+            <div class="actions-row">
+                <a class="pill pill-static" href="index.html">Back Home</a>
+                <button id="contact-submit" class="pill btn-primary" type="submit">Send Message</button>
+            </div>
+
+            <!-- Live region for status updates -->
+            <p id="form-status" class="visually-hidden" aria-live="polite"></p>
+        </form>
     </div>
+</section>
 
-    <!-- Optional hidden fields -->
-    <input type="hidden" name="_subject" value="New message from vikaschauhan3.github.io">
-    <input type="text"   name="_gotcha" style="display:none"> <!-- honeypot -->
-
-    <div class="actions-row">
-      <a class="pill pill-static" href="index.html">Back Home</a>
-      <button id="contact-submit" class="pill btn-primary" type="submit">Send Message</button>
-    </div>
-
-    <!-- Live region for status updates -->
-    <p id="form-status" class="visually-hidden" aria-live="polite"></p>
-  </form>
-</div>
-
+<section class="container contact-wrap">
     <!-- Mini contact blocks (outside the card; equal spacing; centered) -->
     <div class="mini-wrap">
         <div class="mini-contacts">
