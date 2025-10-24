@@ -22,6 +22,11 @@ window.PortfolioManifest = [
     title: "Video Based Learning",
     slug: "video_based_learning",
     href: "{{ '/assets/portfolio/video_based_learning/index.html' | relative_url }}"
+  },
+  {
+    title: "Panasonic Crossfire Contest",
+    slug: "panasonic_crossfire_contest",
+    href: "{{ '/assets/portfolio/panasonic_crossfire_contest/index.html' | relative_url }}"
   }
   // Add more in the order you want them to appear:
   // { title: "Project Name", slug: "project_slug", href: "{{ '/project_slug.html' | relative_url }}" },
